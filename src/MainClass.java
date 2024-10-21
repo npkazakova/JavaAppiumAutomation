@@ -9,4 +9,10 @@ public class MainClass {
     public int getClassNumber() {
             return class_number;
     }
+
+    private String class_string = "Hello, world";
+
+    public String getClassString() {
+        return class_string;
+    }
 }
