@@ -1,11 +1,10 @@
 import org.junit.Test;
 
-public class MainClassTest
-{
+public class MainClassTest {
+    MainClass mainClass = new MainClass();
+
     @Test
     public void testGetLocalNumber() {
-        MainClass mainClass = new MainClass();
-
         int expected = 14;
         int actual = mainClass.getLocalNumber();
 
@@ -13,6 +12,17 @@ public class MainClassTest
             System.out.println("Test passed");
         } else {
             System.out.println("Test failed. Wrong value: " + actual);
+        }
+    }
+
+    @Test
+    public void testGetClassNumber() {
+        int classNumber = mainClass.getClassNumber();
+
+        if (classNumber > 45) {
+            System.out.println("Test passed");
+        } else {
+            System.out.println("Test failed. ClassNumber is less than or equal to 45. Value: " + classNumber);
         }
     }
 }
