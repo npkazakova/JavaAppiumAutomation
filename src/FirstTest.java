@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
 
 import java.net.URL;
+import java.util.List;
 
 public class FirstTest {
 
@@ -191,12 +192,81 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void testFindMultipleArticles()
+    {
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+                "Cannot find 'Skip' button",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find 'Search Wikipedia' input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Thailand",
+                "Cannot find 'Search Wikipedia' topics input",
+                5
+        );
+
+        assertMultipleElementsPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_results_display']//*[contains(@class, 'ViewGroup')]"),
+                "Cannot find multiple items",
+                15
+        );
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_close_btn"),
+                "Cannot find X to cancel search",
+                5
+        );
+
+        waitForElementNotPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_results_display']//*[contains(@class, 'ViewGroup')]"),
+                "Multiple elements are still present on the page",
+                5
+        );
+    }
+
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds)
     {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
         return wait.until(
                 ExpectedConditions.presenceOfElementLocated(by)
+        );
+    }
+
+    private boolean waitForElementNotPresent(By by, String error_message, long timeoutInSeconds)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+        wait.withMessage(error_message + "\n");
+        return wait.until(
+                ExpectedConditions.invisibilityOfElementLocated(by)
+        );
+    }
+
+    private void assertMultipleElementsPresent(By by, String error_message, long timeoutInSeconds)
+    {
+        waitForElementPresent(by, error_message, timeoutInSeconds);
+        List<WebElement> elements = driver.findElements(by);
+        Assert.assertTrue(
+                "Expected multiple elements, but found " + elements.size(),
+                elements.size() > 1
+        );
+    }
+
+    private boolean waitForMultipleElementsNotPresent(By by, String error_message, long timeoutInSeconds)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+        wait.withMessage(error_message + "/n");
+        return wait.until(
+                ExpectedConditions.invisibilityOfElementLocated(by)
         );
     }
 
@@ -214,14 +284,7 @@ public class FirstTest {
         return element;
     }
 
-    private boolean waitForElementNotPresent(By by, String error_message, long timeoutInSeconds)
-    {
-        WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
-        wait.withMessage(error_message + "/n");
-        return wait.until(
-                ExpectedConditions.invisibilityOfElementLocated(by)
-        );
-    }
+
 
     private WebElement waitForElementAndClear(By by, String error_message, long timeoutInSeconds)
     {
