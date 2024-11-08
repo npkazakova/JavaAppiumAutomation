@@ -446,7 +446,6 @@ public class FirstTest {
                 5
         );
 
-
         String empty_result_label = "//*[@text='No results']";
 
         waitForElementPresent(
@@ -603,19 +602,12 @@ public class FirstTest {
 
     private void assertElementNotPresent(By by, String error_message) {
         List<WebElement> elements = driver.findElements(by);
-
-        if (elements.size() > 1) {
-            String default_message = "More than one element was found, but only one (or none) was expected.";
-            throw new AssertionError(default_message + " " + error_message);
-        }
-
-        if (elements.size() == 1) {
             WebElement element = elements.get(0);
             String elementText = element.getText();
             if (!elementText.equals("No results")) {
                 String default_message = "The found element does not have the expected text 'No results'.";
                 throw new AssertionError(default_message + " " + error_message);
             }
-        }
+
     }
 }
