@@ -528,6 +528,44 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void testCheckSearchArticleInBackground()
+    {
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+                "Cannot find 'Skip' button",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find 'Search Wikipedia' input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Java",
+                "Cannot find 'Search Wikipedia' topics input",
+                5
+        );
+
+        waitForElementPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='Java (programming language)']"),
+                "Cannot find 'Java' title",
+                5
+        );
+
+        driver.runAppInBackground(2);
+
+        waitForElementPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='Java (programming language)']"),
+                "Cannot find article after returning from background",
+                5
+        );
+    }
+
+
 
     // Methods
     private WebElement  waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
