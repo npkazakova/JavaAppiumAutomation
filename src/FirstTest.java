@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -460,6 +461,74 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void testChangeScreenOrientationOnSearchResults()
+    {
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+                "Cannot find 'Skip' button",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find 'Search Wikipedia' input",
+                5
+        );
+
+        String search_line = "Java";
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                search_line,
+                "Cannot find 'Search Wikipedia' topics input",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='Java (programming language)']"),
+                "Cannot find 'Java' topic searching by " + search_line,
+                15
+        );
+
+        String description_before_rotaion = waitForElementAndGetAttribute(
+                By.id("pcs-edit-section-title-description"),
+                "text",
+                "Cannot find article description",
+                15
+        );
+
+        driver.rotate(ScreenOrientation.LANDSCAPE);
+
+        String description_after_rotaion = waitForElementAndGetAttribute(
+                By.id("pcs-edit-section-title-description"),
+                "text",
+                "Cannot find article description",
+                15
+        );
+
+        Assert.assertEquals(
+                "Article description has been changed after screen rotation",
+                description_before_rotaion,
+                description_after_rotaion
+        );
+
+        driver.rotate(ScreenOrientation.PORTRAIT);
+
+        String description_after_second_rotaion = waitForElementAndGetAttribute(
+                By.id("pcs-edit-section-title-description"),
+                "text",
+                "Cannot find article description",
+                15
+        );
+
+        Assert.assertEquals(
+                "Article description has been changed after screen rotation",
+                description_before_rotaion,
+                description_after_second_rotaion
+        );
+    }
+
+
     // Methods
     private WebElement  waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
@@ -609,5 +678,10 @@ public class FirstTest {
                 throw new AssertionError(default_message + " " + error_message);
             }
 
+    }
+
+    private String waitForElementAndGetAttribute(By by, String attribute, String error_message, long timeoutInSeconds) {
+        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
+        return element.getAttribute(attribute);
     }
 }
