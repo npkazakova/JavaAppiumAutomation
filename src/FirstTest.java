@@ -423,8 +423,46 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void testAmountOfEmptySearch()
+    {
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+                "Cannot find 'Skip' button",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find 'Search Wikipedia' input",
+                5
+        );
+
+        String search_line = "zgdjgdvvcs";
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                search_line,
+                "Cannot find 'Search Wikipedia' topics input",
+                5
+        );
+
+
+        String empty_result_label = "//*[@text='No results']";
+
+        waitForElementPresent(
+                By.xpath(empty_result_label),
+                "Cannot find empty result label by the request " + search_line,
+                15
+        );
+
+        assertElementNotPresent(
+                By.xpath(empty_result_label),
+                "We've found some results by request " + search_line
+        );
+    }
+
     // Methods
-    private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
+    private WebElement  waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
         return wait.until(
@@ -561,6 +599,23 @@ public class FirstTest {
     {
         List elements = driver.findElements(by);
         return elements.size();
+    }
 
+    private void assertElementNotPresent(By by, String error_message) {
+        List<WebElement> elements = driver.findElements(by);
+
+        if (elements.size() > 1) {
+            String default_message = "More than one element was found, but only one (or none) was expected.";
+            throw new AssertionError(default_message + " " + error_message);
+        }
+
+        if (elements.size() == 1) {
+            WebElement element = elements.get(0);
+            String elementText = element.getText();
+            if (!elementText.equals("No results")) {
+                String default_message = "The found element does not have the expected text 'No results'.";
+                throw new AssertionError(default_message + " " + error_message);
+            }
+        }
     }
 }
