@@ -308,81 +308,6 @@ public class FirstTest {
     }
 
     @Test
-    public void saveFirstArticleToMyList () {
-        waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
-
-        waitForElementAndClick(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "Cannot find 'Search Wikipedia' input",
-                5
-        );
-
-        waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "Java",
-                "Cannot find 'Search Wikipedia' topics input",
-                5
-        );
-
-        waitForElementAndClick(
-                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='Java (programming language)']"),
-                "Cannot find 'Java' title",
-                5
-        );
-
-        waitForElementPresent(
-                By.id("pcs-edit-section-title-description"),
-                "Cannot find article description",
-                15
-        );
-
-        waitForElementAndClick(
-                By.xpath("//*[contains(@text, 'Save')]"),
-                "Cannot find button to save article",
-                5
-        );
-
-        waitForElementAndClick(
-                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
-                "Cannot press button to go back to list of articles",
-                5
-        );
-
-        waitForElementAndClick(
-                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
-                "Cannot press button to go back to search page",
-                5
-        );
-
-        waitForElementAndClick(
-                By.xpath("//android.widget.FrameLayout[@content-desc='Saved']"),
-                "Cannot press 'Saved' button",
-                5
-        );
-
-        waitForElementAndClick(
-                By.xpath("//*[@resource-id='org.wikipedia:id/item_description'][@text='Default list for your saved articles']"),
-                "Cannot press navigation button to 'Default list for your saved articles",
-                5
-        );
-
-        swipeElementToLeft(
-                By.xpath("//*[@text='Java (programming language)']"),
-                "Cannot find saved article"
-        );
-
-        waitForElementNotPresent(
-                By.xpath("//*[@text='Java (programming language)']"),
-                "Cannot delete saved article",
-                5
-        );
-    }
-
-    @Test
     public void testAmountOfNotEmptySearch()
     {
         waitForElementAndClick(
@@ -459,6 +384,267 @@ public class FirstTest {
                 By.xpath(empty_result_label),
                 "We've found some results by request " + search_line
         );
+    }
+
+    @Test
+    public void saveFirstArticleToMyList () {
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+                "Cannot find 'Skip' button",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find 'Search Wikipedia' input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Java",
+                "Cannot find 'Search Wikipedia' topics input",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='Java (programming language)']"),
+                "Cannot find 'Java' title",
+                5
+        );
+
+        waitForElementPresent(
+                By.id("pcs-edit-section-title-description"),
+                "Cannot find article description",
+                15
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Save')]"),
+                "Cannot find button to save article",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
+                "Cannot press button to go back to list of articles",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
+                "Cannot press button to go back to search page",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.FrameLayout[@content-desc='Saved']"),
+                "Cannot press 'Saved' button",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/item_description'][@text='Default list for your saved articles']"),
+                "Cannot press navigation button to 'Default list for your saved articles",
+                5
+        );
+
+        swipeElementToLeft(
+                By.xpath("//*[@text='Java (programming language)']"),
+                "Cannot find saved article"
+        );
+
+        waitForElementNotPresent(
+                By.xpath("//*[@text='Java (programming language)']"),
+                "Cannot delete saved article",
+                5
+        );
+    }
+
+    @Test
+    public void saveTwoArticlesToMyList () {
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+                "Cannot find 'Skip' button",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find 'Search Wikipedia' input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Java",
+                "Cannot find 'Search Wikipedia' topics input",
+                5
+        );
+
+        // first article 'Java (programming language)'
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='Java (programming language)']"),
+                "Cannot find 'Java' title",
+                5
+        );
+
+        waitForElementPresent(
+                By.id("pcs-edit-section-title-description"),
+                "Cannot find article description 'Java (programming language)'",
+                15
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Save')]"),
+                "Cannot find button to save article 'Java (programming language)'",
+                5
+        );
+
+        // add first article to list
+        String add_to_list_action = "org.wikipedia:id/snackbar_action";
+
+        waitForElementAndClick(
+                By.id(add_to_list_action),
+                "Cannot find 'Add to list' action for the first article",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[@text='Name of this list']"),
+                "Programming languages",
+                "Cannot find input to set name of articles list 'Programming languages'",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[@text='OK']"),
+                "Cannot press 'OK' button",
+                5
+        );
+
+        waitForElementNotPresent(
+                By.id("org.wikipedia:id/fragment_page_coordinator"),
+                "Cannot find 'View list' action for the first article",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
+                "Cannot press button to go back to list of articles",
+                5
+        );
+//
+//        // second article 'JavaScript'
+//        waitForElementAndClick(
+//                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='JavaScript']"),
+//                "Cannot find 'JavaScript' title",
+//                5
+//        );
+//
+//        waitForElementPresent(
+//                By.id("pcs-edit-section-title-description"),
+//                "Cannot find article description 'JavaScript'",
+//                15
+//        );
+//
+//        waitForElementAndClick(
+//                By.xpath("//*[contains(@text, 'Save')]"),
+//                "Cannot find button to save article 'JavaScript'",
+//                5
+//        );
+//
+//        // add second article to list
+//        waitForElementAndClick(
+//                By.id(add_to_list_action),
+//                "Cannot find 'Add to list' action for the second article",
+//                5
+//        );
+//
+//        waitForElementAndClick(
+//                By.xpath("//*[@text='Programming languages']"),
+//                "Cannot find 'Programming languages' list",
+//                5
+//        );
+//
+//        waitForElementAndClick(
+//                By.id(add_to_list_action),
+//                "Cannot find 'View list' action for the second article",
+//                5
+//        );
+//
+//        //        waitForElementAndClick(
+////                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
+////                "Cannot press button to go back to list of articles",
+////                5
+////        );
+//
+////        waitForElementAndClick(
+////                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
+////                "Cannot press button to go back to search page",
+////                5
+////        );
+//
+////        // go to saved articles
+////        waitForElementAndClick(
+////                By.xpath("//android.widget.FrameLayout[@content-desc='Saved']"),
+////                "Cannot press 'Saved' button",
+////                5
+////        );
+////
+////        waitForElementAndClick(
+////                By.xpath("//*[@resource-id='org.wikipedia:id/item_description'][@text='Default list for your saved articles']"),
+////                "Cannot press navigation button to 'Default list for your saved articles",
+////                5
+////        );
+//
+//
+//        // open list of articles and check that both articles are saved
+//        waitForElementPresent(
+//                By.xpath("//*[@resource-id='org.wikipedia:id/item_title'][@text='Programming languages']"),
+//                "Cannot find saved list 'Programming languages'",
+//                5
+//        );
+//
+//        // check that both articles are saved
+//        waitForElementPresent(
+//                By.xpath("//*[@text='Java (programming language)']"),
+//                "Cannot find saved article 'Java (programming language)'",
+//                5
+//        );
+//
+//        waitForElementPresent(
+//                By.xpath("//*[@text='JavaScript']"),
+//                "Cannot find saved article 'JavaScript'",
+//                5
+//        );
+//
+//        // delete first article
+//        swipeElementToLeft(
+//                By.xpath("//*[@text='Java (programming language)']"),
+//                "Cannot find saved article"
+//        );
+//
+//        waitForElementNotPresent(
+//                By.xpath("//*[@text='Java (programming language)']"),
+//                "Cannot delete saved article",
+//                5
+//        );
+//
+//        // check the second article still saved and go to it
+//        assertElementIsPresentAndClick(
+//                By.xpath("//*[@text='JavaScript']"),
+//                "Cannot find saved article 'JavaScript'",
+//                5
+//        );
+//
+//        // check the title of the article
+//        assertElementHasText(
+//                By.xpath("//*[@text='JavaScript']"),
+//                "JavaScript",
+//                "Cannot find title of article 'JavaScript'",
+//                5
+//        );
     }
 
     @Test
@@ -562,13 +748,13 @@ public class FirstTest {
                 By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='Java (programming language)']"),
                 "Cannot find article after returning from background",
                 5
-        );
+        ); // баг в приложении, поиск сбрасывается после возвращения из фона
     }
 
 
 
     // Methods
-    private WebElement  waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
+    private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
         return wait.until(
@@ -619,13 +805,6 @@ public class FirstTest {
         return element;
     }
 
-    private WebElement assertElementHasText(By by, String expectedText, String error_message, long timeoutInSeconds) {
-        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
-        String actualText = element.getText();
-        Assert.assertEquals(error_message, expectedText, actualText);
-        return element;
-    }
-
     private void verifyResultsContainKeyword(By by, String keyword, String error_message, long timeoutInSeconds) {
         String error_message1 = "Cannot find response elements";
         waitForElementPresent(by, error_message1, timeoutInSeconds);
@@ -642,6 +821,19 @@ public class FirstTest {
 
             Assert.assertTrue(error_message + "'" + keyword + "'", elementText.contains(keyword));
         }
+    }
+
+    private WebElement assertElementIsPresentAndClick(By by, String error_message, long timeoutInSeconds) {
+        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
+        element.click();
+        return element;
+    }
+
+    private WebElement assertElementHasText(By by, String expectedText, String error_message, long timeoutInSeconds) {
+        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
+        String actualText = element.getText();
+        Assert.assertEquals(error_message, expectedText, actualText);
+        return element;
     }
 
     protected void swipeUp(int timeOfSwipe)
