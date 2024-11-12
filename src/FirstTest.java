@@ -16,6 +16,9 @@ import org.openqa.selenium.By;
 import java.net.URL;
 import java.util.List;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 public class FirstTest {
 
     private AppiumDriver driver;
@@ -343,7 +346,7 @@ public class FirstTest {
                 By.xpath(search_result_locator + "//*[@resource-id='org.wikipedia:id/page_list_item_title']")
         );
 
-        Assert.assertTrue(
+        assertTrue(
                 "We found too few results!",
                 amount_of_search_results > 0
         );
@@ -726,7 +729,39 @@ public class FirstTest {
         ); // баг в приложении, поиск сбрасывается после возвращения из фона
     }
 
+    @Test
+    public void testArticleHasDescription() {
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+                "Cannot find 'Skip' button",
+                5
+        );
 
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find 'Search Wikipedia' input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Appium",
+                "Cannot find 'Search Wikipedia' topics input",
+                5
+        );
+
+       waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='Appium']"),
+                "Cannot find article title'",
+                5
+        );
+
+        // Check that description is present on the article page
+        assertElementPresent(
+                By.id("pcs-edit-section-title-description"),
+                "Description is not present on the article page"
+                );
+    }
 
     // Methods
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
@@ -748,7 +783,7 @@ public class FirstTest {
     private void assertMultipleElementsPresent(By by, String error_message, long timeoutInSeconds) {
         waitForElementPresent(by, error_message, timeoutInSeconds);
         List<WebElement> elements = driver.findElements(by);
-        Assert.assertTrue(
+        assertTrue(
                 "Expected multiple elements, but found " + elements.size(),
                 elements.size() > 1
         );
@@ -794,7 +829,7 @@ public class FirstTest {
         for (WebElement element : elements) {
             String elementText = element.getText().toLowerCase();
 
-            Assert.assertTrue(error_message + "'" + keyword + "'", elementText.contains(keyword));
+            assertTrue(error_message + "'" + keyword + "'", elementText.contains(keyword));
         }
     }
 
@@ -831,6 +866,7 @@ public class FirstTest {
     {
         swipeUp(200);
     }
+
     protected void swipeUpToFindElement(By by, String error_message, int max_swipes)
     {
         int already_swiped = 0;
@@ -874,8 +910,9 @@ public class FirstTest {
         return elements.size();
     }
 
-    private void assertElementIsPresent(By by, String error_message, long timeoutInSeconds) {
-        waitForElementPresent(by, error_message, timeoutInSeconds);
+    private void assertElementPresent(By by, String error_message) {
+        WebElement element = driver.findElement(by);
+        assertNotNull(error_message, element);
     }
 
     private void assertElementNotPresent(By by, String error_message) {
