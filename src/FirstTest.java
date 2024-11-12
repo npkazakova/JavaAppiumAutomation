@@ -38,10 +38,12 @@ public class FirstTest {
         //сapabilities.setCapability("app","/Users/nataliakazakova/Desktop/JavaAppiumAutomation/apks/org.wikipedia.apk");
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+
     }
 
     @After
     public void tearDown() {
+        restoreScreenOrientation(); // default orientation
         driver.quit();
     }
 
@@ -929,5 +931,11 @@ public class FirstTest {
     private String waitForElementAndGetAttribute(By by, String attribute, String error_message, long timeoutInSeconds) {
         WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
         return element.getAttribute(attribute);
+    }
+
+    public void restoreScreenOrientation() {
+        if (driver.getOrientation() != ScreenOrientation.PORTRAIT) {
+            driver.rotate(ScreenOrientation.PORTRAIT);
+        }
     }
 }
