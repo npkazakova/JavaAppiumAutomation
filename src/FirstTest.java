@@ -523,128 +523,103 @@ public class FirstTest {
                 5
         );
 
-        waitForElementNotPresent(
-                By.id("org.wikipedia:id/fragment_page_coordinator"),
-                "Cannot find 'View list' action for the first article",
-                5
-        );
-
         waitForElementAndClick(
                 By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
                 "Cannot press button to go back to list of articles",
                 5
         );
-//
-//        // second article 'JavaScript'
-//        waitForElementAndClick(
-//                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='JavaScript']"),
-//                "Cannot find 'JavaScript' title",
-//                5
-//        );
-//
-//        waitForElementPresent(
-//                By.id("pcs-edit-section-title-description"),
-//                "Cannot find article description 'JavaScript'",
-//                15
-//        );
-//
-//        waitForElementAndClick(
-//                By.xpath("//*[contains(@text, 'Save')]"),
-//                "Cannot find button to save article 'JavaScript'",
-//                5
-//        );
-//
-//        // add second article to list
-//        waitForElementAndClick(
-//                By.id(add_to_list_action),
-//                "Cannot find 'Add to list' action for the second article",
-//                5
-//        );
-//
-//        waitForElementAndClick(
-//                By.xpath("//*[@text='Programming languages']"),
-//                "Cannot find 'Programming languages' list",
-//                5
-//        );
-//
-//        waitForElementAndClick(
-//                By.id(add_to_list_action),
-//                "Cannot find 'View list' action for the second article",
-//                5
-//        );
-//
-//        //        waitForElementAndClick(
-////                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
-////                "Cannot press button to go back to list of articles",
-////                5
-////        );
-//
-////        waitForElementAndClick(
-////                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
-////                "Cannot press button to go back to search page",
-////                5
-////        );
-//
-////        // go to saved articles
-////        waitForElementAndClick(
-////                By.xpath("//android.widget.FrameLayout[@content-desc='Saved']"),
-////                "Cannot press 'Saved' button",
-////                5
-////        );
-////
-////        waitForElementAndClick(
-////                By.xpath("//*[@resource-id='org.wikipedia:id/item_description'][@text='Default list for your saved articles']"),
-////                "Cannot press navigation button to 'Default list for your saved articles",
-////                5
-////        );
-//
-//
-//        // open list of articles and check that both articles are saved
-//        waitForElementPresent(
-//                By.xpath("//*[@resource-id='org.wikipedia:id/item_title'][@text='Programming languages']"),
-//                "Cannot find saved list 'Programming languages'",
-//                5
-//        );
-//
-//        // check that both articles are saved
-//        waitForElementPresent(
-//                By.xpath("//*[@text='Java (programming language)']"),
-//                "Cannot find saved article 'Java (programming language)'",
-//                5
-//        );
-//
-//        waitForElementPresent(
-//                By.xpath("//*[@text='JavaScript']"),
-//                "Cannot find saved article 'JavaScript'",
-//                5
-//        );
-//
-//        // delete first article
-//        swipeElementToLeft(
-//                By.xpath("//*[@text='Java (programming language)']"),
-//                "Cannot find saved article"
-//        );
-//
-//        waitForElementNotPresent(
-//                By.xpath("//*[@text='Java (programming language)']"),
-//                "Cannot delete saved article",
-//                5
-//        );
-//
-//        // check the second article still saved and go to it
-//        assertElementIsPresentAndClick(
-//                By.xpath("//*[@text='JavaScript']"),
-//                "Cannot find saved article 'JavaScript'",
-//                5
-//        );
-//
-//        // check the title of the article
-//        assertElementHasText(
-//                By.xpath("//*[@text='JavaScript']"),
-//                "JavaScript",
-//                "Cannot find title of article 'JavaScript'",
-//                5
-//        );
+
+        // second article 'JavaScript'
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='JavaScript']"),
+                "Cannot find 'JavaScript' title",
+                5
+        );
+
+        waitForElementPresent(
+                By.id("pcs-edit-section-title-description"),
+                "Cannot find article description 'JavaScript'",
+                15
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Save')]"),
+                "Cannot find button to save article 'JavaScript'",
+                5
+        );
+
+        // add second article to list
+        waitForElementAndClick(
+                By.id(add_to_list_action),
+                "Cannot find 'Add to list' action for the second article",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[@text='Programming languages']"),
+                "Cannot find 'Programming languages' list",
+                5
+        );
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/snackbar_action"),
+                "Cannot find 'View list' action for the second article",
+                5
+        );
+
+        // open list of articles and check that both articles are saved
+        waitForElementPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/item_title'][@text='Programming languages']"),
+                "Cannot find saved list 'Programming languages'",
+                5
+        );
+
+        // check that both articles are saved
+        waitForElementPresent(
+                By.xpath("//*[@text='Java (programming language)']"),
+                "Cannot find saved article 'Java (programming language)'",
+                5
+        );
+
+        waitForElementPresent(
+                By.xpath("//*[@text='JavaScript']"),
+                "Cannot find saved article 'JavaScript'",
+                5
+        );
+
+        // delete first article
+        swipeElementToLeft(
+                By.xpath("//*[@text='Java (programming language)']"),
+                "Cannot swipe to delete saved article 'Java (programming language)'"
+        );
+
+        waitForElementNotPresent(
+                By.xpath("//*[@text='Java (programming language)']"),
+                "Cannot delete saved article 'Java (programming language)'",
+                5
+        );
+
+        // check the second article still saved and go to it
+        waitForElementAndClick(
+                By.xpath("//*[@text='JavaScript']"),
+                "Cannot find saved article 'JavaScript'",
+                5
+        );
+
+        // check the description of the article 'JavaScript'
+        String article_description = "pcs-edit-section-title-description";
+        waitForElementPresent(
+                By.id(article_description),
+                "Cannot find article description 'JavaScript'",
+                15
+        );
+
+        assertElementHasText(
+                By.id(article_description),
+                "High-level programming language",
+                "Cannot find description of the article 'JavaScript'",
+                5
+        );
     }
 
     @Test
@@ -897,6 +872,10 @@ public class FirstTest {
     {
         List elements = driver.findElements(by);
         return elements.size();
+    }
+
+    private void assertElementIsPresent(By by, String error_message, long timeoutInSeconds) {
+        waitForElementPresent(by, error_message, timeoutInSeconds);
     }
 
     private void assertElementNotPresent(By by, String error_message) {
