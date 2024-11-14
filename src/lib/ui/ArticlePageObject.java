@@ -12,7 +12,6 @@ public class ArticlePageObject extends MainPageObject
             SAVE_BUTTON = "//*[contains(@text, 'Save')]",
             NAVIGATE_UP_BUTTON = "//android.widget.ImageButton[@content-desc='Navigate up']",
             SAVED_BUTTON = "//android.widget.FrameLayout[@content-desc='Saved']",
-
             SAVED_ARTICLE = "//*[@text='Java (programming language)']";
 
 

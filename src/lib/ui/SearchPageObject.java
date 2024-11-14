@@ -7,6 +7,7 @@ public class SearchPageObject extends MainPageObject
 {
 
     public static final String
+            SEARCH_SKIP_BUTTON = "org.wikipedia:id/fragment_onboarding_skip_button",
             SEARCH_INIT_ELEMENT = "//*[contains(@text, 'Search Wikipedia')]",
             SEARCH_INPUT = "//*[contains(@text, 'Search Wikipedia')]",
             SEARCH_CANCEL_BUTTON = "org.wikipedia:id/search_close_btn",
@@ -25,6 +26,11 @@ public class SearchPageObject extends MainPageObject
         return SEARCH_RESULT_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
     }
     /* TEMPLATES METHODS */
+
+    public void clickSkipButton()
+    {
+        this.waitForElementAndClick(By.id(SEARCH_SKIP_BUTTON), "Cannot find 'Skip' button", 5);
+    }
 
     public void initSearchInput()
     {
@@ -67,10 +73,7 @@ public class SearchPageObject extends MainPageObject
     public int getAmountOfFoundArticles()
     {
         this.waitForElementPresent(
-                By.xpath(SEARCH_RESULT_ELEMENT),
-                "Cannot find anything by the request ",
-                15
-        );
+                By.xpath(SEARCH_RESULT_ELEMENT),"Cannot find anything by the request ",15);
         return this.getAmountOfElements(By.xpath(SEARCH_RESULT_ELEMENT));
     }
 

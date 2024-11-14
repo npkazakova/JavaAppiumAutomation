@@ -1,31 +1,16 @@
 package tests;
 
 import lib.CoreTestCase;
-import lib.ui.MainPageObject;
 import lib.ui.SearchPageObject;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
-public class SearchTests extends CoreTestCase {
-
-    private lib.ui.MainPageObject MainPageObject;
-
-    protected void setUp() throws Exception
-    {
-        super.setUp();
-        MainPageObject = new MainPageObject(driver);
-    }
-
+public class SearchTests extends CoreTestCase
+{
     @Test
     public void testSearch() {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
-
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
+        SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.waitForSearchResult("Java (programming language)");
@@ -33,14 +18,10 @@ public class SearchTests extends CoreTestCase {
 
     @Test
     public void testCancelSearch() {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
+        SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.waitForCancelButtonToAppear();
@@ -49,16 +30,11 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
-    public void testAmountOfNotEmptySearch()
-    {
-
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
+    public void testAmountOfNotEmptySearch() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
         String search_line = "Linkin Park discography";
         SearchPageObject.typeSearchLine(search_line);
@@ -71,15 +47,11 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
-    public void testAmountOfEmptySearch()
-    {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
+    public void testAmountOfEmptySearch() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
         String search_line = "zgdjgdvvcs";
         SearchPageObject.typeSearchLine(search_line);
