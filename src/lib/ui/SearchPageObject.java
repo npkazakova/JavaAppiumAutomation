@@ -15,7 +15,8 @@ public class SearchPageObject extends MainPageObject
             SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='{SUBSTRING}']",
             SEARCH_RESULT_ELEMENT = "(//*[@resource-id='org.wikipedia:id/search_container']/*[@class='android.widget.FrameLayout'])[position()>1]",
             SEARCH_MULTIPLE_RESULTS = "//*[@resource-id='org.wikipedia:id/search_results_display']//*[contains(@class, 'ViewGroup')]",
-            SEARCH_EMPTY_RESULT_ELEMENT = "//*[@text='No results']";
+            SEARCH_EMPTY_RESULT_ELEMENT = "//*[@text='No results']",
+            SEARCH_KEYWORD_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/page_list_item_title'][contains(@text,'{SUBSTRING}')]";
 
     public SearchPageObject(AppiumDriver driver)
     {
@@ -26,6 +27,11 @@ public class SearchPageObject extends MainPageObject
     private static String getResultSearchElement(String substring)
     {
         return SEARCH_RESULT_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
+    }
+
+    private static String getResultsContainKeyword(String substring)
+    {
+        return SEARCH_KEYWORD_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
     }
     /* TEMPLATES METHODS */
 
@@ -82,6 +88,11 @@ public class SearchPageObject extends MainPageObject
         this.waitForMultipleElementsNotPresent(By.xpath(SEARCH_MULTIPLE_RESULTS), "Search results are still present", 15);
     }
 
+    public void verifyResultsContainKeyword(String substring)
+    {
+        String keyword_result_xpath = getResultsContainKeyword(substring);
+        this.waitForElementPresent(By.xpath(keyword_result_xpath), "Cannot find search results with keyword " + substring, 15);
+    }
 
     public void clickByArticleWithSubstring(String substring)
     {

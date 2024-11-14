@@ -15,41 +15,6 @@ public class FirstTest extends CoreTestCase {
         MainPageObject = new MainPageObject(driver);
     }
 
-
-
-    @Test
-    public void testSearchResultsContainKeyword() {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
-
-        MainPageObject.waitForElementAndClick(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "Cannot find 'Search Wikipedia' input",
-                5
-        );
-
-        MainPageObject.waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "JAVA",
-                "Cannot find 'Search Wikipedia' topics input",
-                5
-        );
-
-        MainPageObject.verifyResultsContainKeyword(
-                By.xpath("//*[@resource-id='org.wikipedia:id/search_results_display']" +
-                        "//*[contains(@class, 'ViewGroup')][position() > 1]" +
-                        "//*[@resource-id='org.wikipedia:id/page_list_item_title']"),
-                "java",
-                "Search results do not contain the keyword ",
-                15
-        );
-    }
-
-
-
     @Test
     public void testSaveTwoArticlesToMyList () {
         MainPageObject.waitForElementAndClick(

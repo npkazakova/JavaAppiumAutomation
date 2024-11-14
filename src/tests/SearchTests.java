@@ -89,4 +89,16 @@ public class SearchTests extends CoreTestCase
         SearchPageObject.clickCancelSearch();
         SearchPageObject.waitForMultipleElementsNotPresent();
     }
+
+    @Test
+    public void testSearchResultsContainKeyword() {
+
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        SearchPageObject.clickSkipButton();
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Java");
+        SearchPageObject.verifyResultsContainKeyword("Java");
+    }
+
 }
