@@ -279,36 +279,11 @@ public class FirstTest extends CoreTestCase {
                 5
         );
 
-//        MainPageObject.waitForElementAndClick(
-//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-//                "Cannot find 'Search Wikipedia' input",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementAndSendKeys(
-//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-//                "Java",
-//                "Cannot find 'Search Wikipedia' topics input",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementAndClick(
-//                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='Java (programming language)']"),
-//                "Cannot find 'Java' title",
-//                5
-//        );
-
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickByArticleWithSubstring("Java (programming language)");
-
-//        MainPageObject.waitForElementPresent(
-//                By.id("pcs-edit-section-title-description"),
-//                "Cannot find article description",
-//                15
-//        );
 
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
         ArticlePageObject.waitForDescriptionElement();
@@ -320,51 +295,6 @@ public class FirstTest extends CoreTestCase {
         MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
         String article_title = "Java (programming language)";
         MyListsPageObject.swipeByArticleToDelete(article_title);
-
-
-//        String article_description = ArticlePageObject.getArticleDescription();
-//        String name_of_folder = "Learning programming";
-
-//        MainPageObject.waitForElementAndClick(
-//                By.xpath("//*[contains(@text, 'Save')]"),
-//                "Cannot find button to save article",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementAndClick(
-//                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
-//                "Cannot press button to go back to list of articles",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementAndClick(
-//                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
-//                "Cannot press button to go back to search page",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementAndClick(
-//                By.xpath("//android.widget.FrameLayout[@content-desc='Saved']"),
-//                "Cannot press 'Saved' button",
-//                5
-//        );
-
-//        MainPageObject.waitForElementAndClick(
-//                By.xpath("//*[@resource-id='org.wikipedia:id/item_description'][@text='Default list for your saved articles']"),
-//                "Cannot press navigation button to 'Default list for your saved articles",
-//                5
-//        );
-//
-//        MainPageObject.swipeElementToLeft(
-//                By.xpath("//*[@text='Java (programming language)']"),
-//                "Cannot find saved article"
-//        );
-//
-//        MainPageObject.waitForElementNotPresent(
-//                By.xpath("//*[@text='Java (programming language)']"),
-//                "Cannot delete saved article",
-//                5
-//        );
     }
 
     @Test
