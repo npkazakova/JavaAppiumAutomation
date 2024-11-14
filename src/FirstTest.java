@@ -1,9 +1,7 @@
 import lib.CoreTestCase;
 import lib.ui.*;
-import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 
 
@@ -17,79 +15,6 @@ public class FirstTest extends CoreTestCase {
         MainPageObject = new MainPageObject(driver);
     }
 
-//    @Test
-//    public void testSearch() {
-//        MainPageObject.waitForElementAndClick(
-//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-//                "Cannot find 'Skip' button",
-//                5
-//        );
-//
-//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-//
-//        SearchPageObject.initSearchInput();
-//        SearchPageObject.typeSearchLine("Java");
-//        SearchPageObject.waitForSearchResult("Java (programming language)");
-//    }
-//
-//    @Test
-//    public void testCancelSearch() {
-//        MainPageObject.waitForElementAndClick(
-//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-//                "Cannot find 'Skip' button",
-//                5
-//        );
-//
-//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-//
-//        SearchPageObject.initSearchInput();
-//        SearchPageObject.typeSearchLine("Java");
-//        SearchPageObject.waitForCancelButtonToAppear();
-//        SearchPageObject.clickCancelSearch();
-//        SearchPageObject.waitForCancelButtonToDisappear();
-//    }
-
-//    @Test
-//    public void testCompareArticleDescription() {
-//        MainPageObject.waitForElementAndClick(
-//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-//                "Cannot find 'Skip' button",
-//                5
-//        );
-//
-//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-//
-//        SearchPageObject.initSearchInput();
-//        SearchPageObject.typeSearchLine("Java");
-//        SearchPageObject.clickByArticleWithSubstring("Java (programming language)");
-//
-//        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-//        String article_description = ArticlePageObject.getArticleDescription();
-//
-//        assertEquals(
-//                "We see unexpected description!",
-//                "Object-oriented programming language",
-//                article_description
-//        );
-//    }
-
-//    @Test
-//    public void testSwipeArticle() {
-//        MainPageObject.waitForElementAndClick(
-//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-//                "Cannot find 'Skip' button",
-//                5
-//        );
-//
-//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-//        SearchPageObject.initSearchInput();
-//        SearchPageObject.typeSearchLine("Appium");
-//        SearchPageObject.clickByArticleWithSubstring("Appium");
-//
-//        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-//        ArticlePageObject.waitForDescriptionElement();
-//        ArticlePageObject.swipeToFooter();
-//    }
 
     @Test
     public void testCompareTopicsInputText() {
@@ -192,110 +117,7 @@ public class FirstTest extends CoreTestCase {
         );
     }
 
-//    @Test
-//    public void testAmountOfNotEmptySearch()
-//    {
-//        MainPageObject.waitForElementAndClick(
-//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-//                "Cannot find 'Skip' button",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementAndClick(
-//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-//                "Cannot find 'Search Wikipedia' input",
-//                5
-//        );
-//
-//        String search_line = "Linkin Park discography";
-//        MainPageObject.waitForElementAndSendKeys(
-//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-//                search_line,
-//                "Cannot find 'Search Wikipedia' topics input",
-//                5
-//        );
-//
-//        String search_result_locator = "(//*[@resource-id='org.wikipedia:id/search_container']" +
-//                                        "/*[@class='android.widget.FrameLayout'])[position()>1]";
-//        MainPageObject.waitForElementPresent(
-//                By.xpath(search_result_locator),
-//                "Cannot find anything by the request " + search_line,
-//                15
-//        );
-//
-//
-//        int amount_of_search_results = MainPageObject.getAmountOfElements(
-//                By.xpath(search_result_locator + "//*[@resource-id='org.wikipedia:id/page_list_item_title']")
-//        );
-//
-//        assertTrue(
-//                "We found too few results!",
-//                amount_of_search_results > 0
-//        );
-//    }
-//
-//    @Test
-//    public void testAmountOfEmptySearch()
-//    {
-//        MainPageObject.waitForElementAndClick(
-//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-//                "Cannot find 'Skip' button",
-//                5
-//        );
-//
-//        MainPageObject.waitForElementAndClick(
-//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-//                "Cannot find 'Search Wikipedia' input",
-//                5
-//        );
-//
-//        String search_line = "zgdjgdvvcs";
-//        MainPageObject.waitForElementAndSendKeys(
-//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-//                search_line,
-//                "Cannot find 'Search Wikipedia' topics input",
-//                5
-//        );
-//
-//        String empty_result_label = "//*[@text='No results']";
-//
-//        MainPageObject.waitForElementPresent(
-//                By.xpath(empty_result_label),
-//                "Cannot find empty result label by the request " + search_line,
-//                15
-//        );
-//
-//        MainPageObject.assertElementNotPresent(
-//                By.xpath(empty_result_label),
-//                "We've found some results by request " + search_line
-//        );
-//    }
 
-//    @Test
-//    public void testSaveFirstArticleToMyList () {
-//        MainPageObject.waitForElementAndClick(
-//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-//                "Cannot find 'Skip' button",
-//                5
-//        );
-//
-//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-//
-//        SearchPageObject.initSearchInput();
-//        SearchPageObject.typeSearchLine("Java");
-//        SearchPageObject.clickByArticleWithSubstring("Java (programming language)");
-//
-//        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-//        ArticlePageObject.waitForDescriptionElement();
-//        ArticlePageObject.AddArticleSave();
-//
-//        NavigationUI NavigationUI = new NavigationUI(driver);
-//        NavigationUI.clickDefaultList();
-//
-//        MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
-//        String article_title = "Java (programming language)";
-//        MyListsPageObject.swipeByArticleToDelete(article_title);
-//    }
 
     @Test
     public void testSaveTwoArticlesToMyList () {
@@ -458,61 +280,6 @@ public class FirstTest extends CoreTestCase {
         );
     }
 
-//    @Test
-//    public void testChangeScreenOrientationOnSearchResults()
-//    {
-//        MainPageObject.waitForElementAndClick(
-//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-//                "Cannot find 'Skip' button",
-//                5
-//        );
-//
-//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-//
-//        SearchPageObject.initSearchInput();
-//        SearchPageObject.typeSearchLine("Java");
-//        SearchPageObject.clickByArticleWithSubstring("Java (programming language)");
-//
-//        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-//        String description_before_rotation = ArticlePageObject.getArticleDescription();
-//
-//        this.rotateScreenLandscape();
-//        String description_after_rotation = ArticlePageObject.getArticleDescription();
-//
-//        assertEquals(
-//                "Article description has been changed after screen rotation",
-//                description_before_rotation,
-//                description_after_rotation
-//        );
-//
-//        this.rotateScreenPortrait();
-//        String description_after_second_rotation = ArticlePageObject.getArticleDescription();
-//
-//        assertEquals(
-//                "Article description has been changed after screen rotation",
-//                description_before_rotation,
-//                description_after_second_rotation
-//        );
-//    }
-//
-//    @Test
-//    public void testCheckSearchArticleInBackground()
-//    {
-//        MainPageObject.waitForElementAndClick(
-//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-//                "Cannot find 'Skip' button",
-//                5
-//        );
-//
-//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-//
-//        SearchPageObject.initSearchInput();
-//        SearchPageObject.typeSearchLine("Java");
-//        SearchPageObject.waitForSearchResult("Java (programming language)");
-//
-//        this.backgroundApp(2);
-//        SearchPageObject.waitForSearchResult("Java (programming language)"); // баг в приложении, поиск сбрасывается после возвращения из фона
-//    }
 
     @Test
     public void testArticleHasDescription() {
