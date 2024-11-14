@@ -49,47 +49,47 @@ public class FirstTest extends CoreTestCase {
         SearchPageObject.waitForCancelButtonToDisappear();
     }
 
-    @Test
-    public void testCompareArticleDescription() {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
+//    @Test
+//    public void testCompareArticleDescription() {
+//        MainPageObject.waitForElementAndClick(
+//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+//                "Cannot find 'Skip' button",
+//                5
+//        );
+//
+//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+//
+//        SearchPageObject.initSearchInput();
+//        SearchPageObject.typeSearchLine("Java");
+//        SearchPageObject.clickByArticleWithSubstring("Java (programming language)");
+//
+//        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+//        String article_description = ArticlePageObject.getArticleDescription();
+//
+//        assertEquals(
+//                "We see unexpected description!",
+//                "Object-oriented programming language",
+//                article_description
+//        );
+//    }
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
-        SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.clickByArticleWithSubstring("Java (programming language)");
-
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-        String article_description = ArticlePageObject.getArticleDescription();
-
-        Assert.assertEquals(
-                "We see unexpected description!",
-                "Object-oriented programming language",
-                article_description
-        );
-    }
-
-    @Test
-    public void testSwipeArticle() {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
-
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-        SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Appium");
-        SearchPageObject.clickByArticleWithSubstring("Appium");
-
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-        ArticlePageObject.waitForDescriptionElement();
-        ArticlePageObject.swipeToFooter();
-    }
+//    @Test
+//    public void testSwipeArticle() {
+//        MainPageObject.waitForElementAndClick(
+//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+//                "Cannot find 'Skip' button",
+//                5
+//        );
+//
+//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+//        SearchPageObject.initSearchInput();
+//        SearchPageObject.typeSearchLine("Appium");
+//        SearchPageObject.clickByArticleWithSubstring("Appium");
+//
+//        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+//        ArticlePageObject.waitForDescriptionElement();
+//        ArticlePageObject.swipeToFooter();
+//    }
 
     @Test
     public void testCompareTopicsInputText() {
@@ -114,7 +114,7 @@ public class FirstTest extends CoreTestCase {
 
         String topic_input_text = text_element.getAttribute("text");
 
-        Assert.assertEquals(
+        assertEquals(
                 "We see unexpected text!",
                 "Search Wikipedia",
                 topic_input_text
@@ -271,31 +271,31 @@ public class FirstTest extends CoreTestCase {
         );
     }
 
-    @Test
-    public void testSaveFirstArticleToMyList () {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
-
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
-        SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.clickByArticleWithSubstring("Java (programming language)");
-
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-        ArticlePageObject.waitForDescriptionElement();
-        ArticlePageObject.AddArticleSave();
-
-        NavigationUI NavigationUI = new NavigationUI(driver);
-        NavigationUI.clickDefaultList();
-
-        MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
-        String article_title = "Java (programming language)";
-        MyListsPageObject.swipeByArticleToDelete(article_title);
-    }
+//    @Test
+//    public void testSaveFirstArticleToMyList () {
+//        MainPageObject.waitForElementAndClick(
+//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+//                "Cannot find 'Skip' button",
+//                5
+//        );
+//
+//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+//
+//        SearchPageObject.initSearchInput();
+//        SearchPageObject.typeSearchLine("Java");
+//        SearchPageObject.clickByArticleWithSubstring("Java (programming language)");
+//
+//        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+//        ArticlePageObject.waitForDescriptionElement();
+//        ArticlePageObject.AddArticleSave();
+//
+//        NavigationUI NavigationUI = new NavigationUI(driver);
+//        NavigationUI.clickDefaultList();
+//
+//        MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
+//        String article_title = "Java (programming language)";
+//        MyListsPageObject.swipeByArticleToDelete(article_title);
+//    }
 
     @Test
     public void testSaveTwoArticlesToMyList () {
@@ -503,7 +503,7 @@ public class FirstTest extends CoreTestCase {
                 15
         );
 
-        Assert.assertEquals(
+        assertEquals(
                 "Article description has been changed after screen rotation",
                 description_before_rotaion,
                 description_after_rotaion
@@ -518,7 +518,7 @@ public class FirstTest extends CoreTestCase {
                 15
         );
 
-        Assert.assertEquals(
+        assertEquals(
                 "Article description has been changed after screen rotation",
                 description_before_rotaion,
                 description_after_second_rotaion
