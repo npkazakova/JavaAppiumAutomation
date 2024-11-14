@@ -9,7 +9,6 @@ public class SearchTests extends CoreTestCase
     @Test
     public void testSearch() {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
@@ -20,7 +19,6 @@ public class SearchTests extends CoreTestCase
     public void testCancelSearch() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
@@ -33,7 +31,6 @@ public class SearchTests extends CoreTestCase
     public void testAmountOfNotEmptySearch() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
         String search_line = "Linkin Park discography";
@@ -50,7 +47,6 @@ public class SearchTests extends CoreTestCase
     public void testAmountOfEmptySearch() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
         String search_line = "zgdjgdvvcs";
@@ -63,7 +59,6 @@ public class SearchTests extends CoreTestCase
     public void testCompareTopicsInputPlaceholder() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
 
@@ -79,7 +74,6 @@ public class SearchTests extends CoreTestCase
     public void testFindMultipleArticles() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
 
@@ -94,7 +88,6 @@ public class SearchTests extends CoreTestCase
     public void testSearchResultsContainKeyword() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");

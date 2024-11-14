@@ -11,7 +11,6 @@ public class ArticleTests extends CoreTestCase
     public void testCompareArticleDescription() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
@@ -28,10 +27,22 @@ public class ArticleTests extends CoreTestCase
     }
 
     @Test
+    public void testArticleHasDescription() {
+
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.clickSkipButton();
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Appium");
+        SearchPageObject.clickByArticleWithSubstring("Appium");
+
+        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+        ArticlePageObject.assertArticleDescriptionPresent();
+    }
+
+    @Test
     public void testSwipeArticle() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Appium");

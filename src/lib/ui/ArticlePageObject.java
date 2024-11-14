@@ -25,6 +25,11 @@ public class ArticlePageObject extends MainPageObject
 
     }
 
+    public void assertArticleDescriptionPresent()
+    {
+        this.assertElementPresent(By.id(DESCRIPTION), "Description is not present on the article page");
+    }
+
     public String getArticleDescription()
     {
         WebElement description_element = waitForDescriptionElement();

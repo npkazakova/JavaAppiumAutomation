@@ -177,37 +177,5 @@ public class FirstTest extends CoreTestCase {
     }
 
 
-    @Test
-    public void testArticleHasDescription() {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
 
-        MainPageObject.waitForElementAndClick(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "Cannot find 'Search Wikipedia' input",
-                5
-        );
-
-        MainPageObject.waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "Appium",
-                "Cannot find 'Search Wikipedia' topics input",
-                5
-        );
-
-        MainPageObject.waitForElementAndClick(
-                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='Appium']"),
-                "Cannot find article title'",
-                5
-        );
-
-        // Check that description is present on the article page
-        MainPageObject.assertElementPresent(
-                By.id("pcs-edit-section-title-description"),
-                "Description is not present on the article page"
-                );
-    }
 }
