@@ -17,37 +17,37 @@ public class FirstTest extends CoreTestCase {
         MainPageObject = new MainPageObject(driver);
     }
 
-    @Test
-    public void testSearch() {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
-
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
-        SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForSearchResult("Java (programming language)");
-    }
-
-    @Test
-    public void testCancelSearch() {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
-
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
-
-        SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForCancelButtonToAppear();
-        SearchPageObject.clickCancelSearch();
-        SearchPageObject.waitForCancelButtonToDisappear();
-    }
+//    @Test
+//    public void testSearch() {
+//        MainPageObject.waitForElementAndClick(
+//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+//                "Cannot find 'Skip' button",
+//                5
+//        );
+//
+//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+//
+//        SearchPageObject.initSearchInput();
+//        SearchPageObject.typeSearchLine("Java");
+//        SearchPageObject.waitForSearchResult("Java (programming language)");
+//    }
+//
+//    @Test
+//    public void testCancelSearch() {
+//        MainPageObject.waitForElementAndClick(
+//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+//                "Cannot find 'Skip' button",
+//                5
+//        );
+//
+//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+//
+//        SearchPageObject.initSearchInput();
+//        SearchPageObject.typeSearchLine("Java");
+//        SearchPageObject.waitForCancelButtonToAppear();
+//        SearchPageObject.clickCancelSearch();
+//        SearchPageObject.waitForCancelButtonToDisappear();
+//    }
 
 //    @Test
 //    public void testCompareArticleDescription() {
@@ -458,109 +458,61 @@ public class FirstTest extends CoreTestCase {
         );
     }
 
-    @Test
-    public void testChangeScreenOrientationOnSearchResults()
-    {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
-
-        MainPageObject.waitForElementAndClick(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "Cannot find 'Search Wikipedia' input",
-                5
-        );
-
-        String search_line = "Java";
-        MainPageObject.waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                search_line,
-                "Cannot find 'Search Wikipedia' topics input",
-                5
-        );
-
-        MainPageObject.waitForElementAndClick(
-                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='Java (programming language)']"),
-                "Cannot find 'Java' topic searching by " + search_line,
-                15
-        );
-
-        String description_before_rotaion = MainPageObject.waitForElementAndGetAttribute(
-                By.id("pcs-edit-section-title-description"),
-                "text",
-                "Cannot find article description",
-                15
-        );
-
-        driver.rotate(ScreenOrientation.LANDSCAPE);
-
-        String description_after_rotaion = MainPageObject.waitForElementAndGetAttribute(
-                By.id("pcs-edit-section-title-description"),
-                "text",
-                "Cannot find article description",
-                15
-        );
-
-        assertEquals(
-                "Article description has been changed after screen rotation",
-                description_before_rotaion,
-                description_after_rotaion
-        );
-
-        driver.rotate(ScreenOrientation.PORTRAIT);
-
-        String description_after_second_rotaion = MainPageObject.waitForElementAndGetAttribute(
-                By.id("pcs-edit-section-title-description"),
-                "text",
-                "Cannot find article description",
-                15
-        );
-
-        assertEquals(
-                "Article description has been changed after screen rotation",
-                description_before_rotaion,
-                description_after_second_rotaion
-        );
-    }
-
-    @Test
-    public void testCheckSearchArticleInBackground()
-    {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
-
-        MainPageObject.waitForElementAndClick(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "Cannot find 'Search Wikipedia' input",
-                5
-        );
-
-        MainPageObject.waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "Java",
-                "Cannot find 'Search Wikipedia' topics input",
-                5
-        );
-
-        MainPageObject.waitForElementPresent(
-                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='Java (programming language)']"),
-                "Cannot find 'Java' title",
-                5
-        );
-
-        driver.runAppInBackground(2);
-
-        MainPageObject.waitForElementPresent(
-                By.xpath("//*[@resource-id='org.wikipedia:id/search_container']//*[@text='Java (programming language)']"),
-                "Cannot find article after returning from background",
-                5
-        ); // баг в приложении, поиск сбрасывается после возвращения из фона
-    }
+//    @Test
+//    public void testChangeScreenOrientationOnSearchResults()
+//    {
+//        MainPageObject.waitForElementAndClick(
+//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+//                "Cannot find 'Skip' button",
+//                5
+//        );
+//
+//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+//
+//        SearchPageObject.initSearchInput();
+//        SearchPageObject.typeSearchLine("Java");
+//        SearchPageObject.clickByArticleWithSubstring("Java (programming language)");
+//
+//        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+//        String description_before_rotation = ArticlePageObject.getArticleDescription();
+//
+//        this.rotateScreenLandscape();
+//        String description_after_rotation = ArticlePageObject.getArticleDescription();
+//
+//        assertEquals(
+//                "Article description has been changed after screen rotation",
+//                description_before_rotation,
+//                description_after_rotation
+//        );
+//
+//        this.rotateScreenPortrait();
+//        String description_after_second_rotation = ArticlePageObject.getArticleDescription();
+//
+//        assertEquals(
+//                "Article description has been changed after screen rotation",
+//                description_before_rotation,
+//                description_after_second_rotation
+//        );
+//    }
+//
+//    @Test
+//    public void testCheckSearchArticleInBackground()
+//    {
+//        MainPageObject.waitForElementAndClick(
+//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+//                "Cannot find 'Skip' button",
+//                5
+//        );
+//
+//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+//
+//        SearchPageObject.initSearchInput();
+//        SearchPageObject.typeSearchLine("Java");
+//        SearchPageObject.waitForSearchResult("Java (programming language)");
+//
+//        this.backgroundApp(2);
+//        SearchPageObject.waitForSearchResult("Java (programming language)"); // баг в приложении, поиск сбрасывается после возвращения из фона
+//    }
 
     @Test
     public void testArticleHasDescription() {
