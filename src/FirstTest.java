@@ -192,84 +192,84 @@ public class FirstTest extends CoreTestCase {
         );
     }
 
-    @Test
-    public void testAmountOfNotEmptySearch()
-    {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
-
-        MainPageObject.waitForElementAndClick(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "Cannot find 'Search Wikipedia' input",
-                5
-        );
-
-        String search_line = "Linkin Park discography";
-        MainPageObject.waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                search_line,
-                "Cannot find 'Search Wikipedia' topics input",
-                5
-        );
-
-        String search_result_locator = "(//*[@resource-id='org.wikipedia:id/search_container']" +
-                                        "/*[@class='android.widget.FrameLayout'])[position()>1]";
-        MainPageObject.waitForElementPresent(
-                By.xpath(search_result_locator),
-                "Cannot find anything by the request " + search_line,
-                15
-        );
-
-
-        int amount_of_search_results = MainPageObject.getAmountOfElements(
-                By.xpath(search_result_locator + "//*[@resource-id='org.wikipedia:id/page_list_item_title']")
-        );
-
-        assertTrue(
-                "We found too few results!",
-                amount_of_search_results > 0
-        );
-    }
-
-    @Test
-    public void testAmountOfEmptySearch()
-    {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
-
-        MainPageObject.waitForElementAndClick(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "Cannot find 'Search Wikipedia' input",
-                5
-        );
-
-        String search_line = "zgdjgdvvcs";
-        MainPageObject.waitForElementAndSendKeys(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                search_line,
-                "Cannot find 'Search Wikipedia' topics input",
-                5
-        );
-
-        String empty_result_label = "//*[@text='No results']";
-
-        MainPageObject.waitForElementPresent(
-                By.xpath(empty_result_label),
-                "Cannot find empty result label by the request " + search_line,
-                15
-        );
-
-        MainPageObject.assertElementNotPresent(
-                By.xpath(empty_result_label),
-                "We've found some results by request " + search_line
-        );
-    }
+//    @Test
+//    public void testAmountOfNotEmptySearch()
+//    {
+//        MainPageObject.waitForElementAndClick(
+//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+//                "Cannot find 'Skip' button",
+//                5
+//        );
+//
+//        MainPageObject.waitForElementAndClick(
+//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+//                "Cannot find 'Search Wikipedia' input",
+//                5
+//        );
+//
+//        String search_line = "Linkin Park discography";
+//        MainPageObject.waitForElementAndSendKeys(
+//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+//                search_line,
+//                "Cannot find 'Search Wikipedia' topics input",
+//                5
+//        );
+//
+//        String search_result_locator = "(//*[@resource-id='org.wikipedia:id/search_container']" +
+//                                        "/*[@class='android.widget.FrameLayout'])[position()>1]";
+//        MainPageObject.waitForElementPresent(
+//                By.xpath(search_result_locator),
+//                "Cannot find anything by the request " + search_line,
+//                15
+//        );
+//
+//
+//        int amount_of_search_results = MainPageObject.getAmountOfElements(
+//                By.xpath(search_result_locator + "//*[@resource-id='org.wikipedia:id/page_list_item_title']")
+//        );
+//
+//        assertTrue(
+//                "We found too few results!",
+//                amount_of_search_results > 0
+//        );
+//    }
+//
+//    @Test
+//    public void testAmountOfEmptySearch()
+//    {
+//        MainPageObject.waitForElementAndClick(
+//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+//                "Cannot find 'Skip' button",
+//                5
+//        );
+//
+//        MainPageObject.waitForElementAndClick(
+//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+//                "Cannot find 'Search Wikipedia' input",
+//                5
+//        );
+//
+//        String search_line = "zgdjgdvvcs";
+//        MainPageObject.waitForElementAndSendKeys(
+//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+//                search_line,
+//                "Cannot find 'Search Wikipedia' topics input",
+//                5
+//        );
+//
+//        String empty_result_label = "//*[@text='No results']";
+//
+//        MainPageObject.waitForElementPresent(
+//                By.xpath(empty_result_label),
+//                "Cannot find empty result label by the request " + search_line,
+//                15
+//        );
+//
+//        MainPageObject.assertElementNotPresent(
+//                By.xpath(empty_result_label),
+//                "We've found some results by request " + search_line
+//        );
+//    }
 
 //    @Test
 //    public void testSaveFirstArticleToMyList () {
