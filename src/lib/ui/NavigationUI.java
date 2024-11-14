@@ -22,6 +22,4 @@ public class NavigationUI extends MainPageObject
                 5
         );
     }
-
-
 }
