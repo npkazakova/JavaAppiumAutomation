@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 public class NavigationUI extends MainPageObject
 {
     private static final String
-            DEFAULT_LIST = "//*[@resource-id='org.wikipedia:id/item_description'][@text='Default list for your saved articles']",
+            DEFAULT_LIST = "//*[@resource-id='org.wikipedia:id/item_description'][@text='Default list for your saved articles']";
 
 
     public NavigationUI(AppiumDriver driver)
