@@ -16,35 +16,52 @@ public class FirstTest extends CoreTestCase {
     }
 
 
-    @Test
-    public void testCompareTopicsInputText() {
-        MainPageObject.waitForElementAndClick(
-                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
-                "Cannot find 'Skip' button",
-                5
-        );
+//    @Test
+//    public void testCompareTopicsInputText() {
+//        MainPageObject.waitForElementAndClick(
+//                By.id("org.wikipedia:id/fragment_onboarding_skip_button"),
+//                "Cannot find 'Skip' button",
+//                5
+//        );
+//
+//        MainPageObject.waitForElementAndClick(
+//                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+//                "Cannot find 'Search Wikipedia' input",
+//                5
+//        );
+//
+//        WebElement text_element = MainPageObject.assertElementHasText(
+//                By.id("org.wikipedia:id/search_src_text"),
+//                "Search Wikipedia",
+//                "Cannot find topics input text",
+//                15
+//        );
+//
+//        String topic_input_text = text_element.getAttribute("text");
+//
+//        assertEquals(
+//                "We see unexpected text!",
+//                "Search Wikipedia",
+//                topic_input_text
+//        );
+//    }
 
-        MainPageObject.waitForElementAndClick(
-                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
-                "Cannot find 'Search Wikipedia' input",
-                5
-        );
-
-        WebElement text_element = MainPageObject.assertElementHasText(
-                By.id("org.wikipedia:id/search_src_text"),
-                "Search Wikipedia",
-                "Cannot find topics input text",
-                15
-        );
-
-        String topic_input_text = text_element.getAttribute("text");
-
-        assertEquals(
-                "We see unexpected text!",
-                "Search Wikipedia",
-                topic_input_text
-        );
-    }
+//    @Test
+//    public void testCompareTopicsInputText() {
+//
+//        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+//
+//        SearchPageObject.clickSkipButton();
+//        SearchPageObject.initSearchInput();
+//
+//        String topic_placeholder_text = SearchPageObject.getSearchInputText();
+//
+//        assertEquals(
+//                "We see unexpected text!",
+//                "Search Wikipedia",
+//                topic_placeholder_text
+//        );
+//    }
 
     @Test
     public void testFindMultipleArticles() {

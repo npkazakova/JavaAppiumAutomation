@@ -10,6 +10,7 @@ public class SearchPageObject extends MainPageObject
             SEARCH_SKIP_BUTTON = "org.wikipedia:id/fragment_onboarding_skip_button",
             SEARCH_INIT_ELEMENT = "//*[contains(@text, 'Search Wikipedia')]",
             SEARCH_INPUT = "//*[contains(@text, 'Search Wikipedia')]",
+            SEARCH_INPUT_PLACEHOLDER = "org.wikipedia:id/search_src_text",
             SEARCH_CANCEL_BUTTON = "org.wikipedia:id/search_close_btn",
             SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='{SUBSTRING}']",
             SEARCH_RESULT_ELEMENT = "(//*[@resource-id='org.wikipedia:id/search_container']/*[@class='android.widget.FrameLayout'])[position()>1]",
@@ -36,6 +37,12 @@ public class SearchPageObject extends MainPageObject
     {
         this.waitForElementPresent(By.xpath(SEARCH_INIT_ELEMENT), "Cannot find search input after clicking search init element", 5);
         this.waitForElementAndClick(By.xpath(SEARCH_INIT_ELEMENT), "Cannot find and click search init element", 5);
+    }
+
+    public String getSearchInputText()
+    {
+        this.waitForElementPresent(By.id(SEARCH_INPUT_PLACEHOLDER), "Cannot find search input field", 15);
+        return this.waitForElementAndGetAttribute(By.id(SEARCH_INPUT_PLACEHOLDER), "text", "Cannot find placeholder", 5);
     }
 
     public void waitForCancelButtonToAppear()

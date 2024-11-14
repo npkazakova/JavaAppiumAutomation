@@ -58,4 +58,20 @@ public class SearchTests extends CoreTestCase
         SearchPageObject.waitForEmptyResultsLabel();
         SearchPageObject.assertThereIsNoResultOfSearch();
     }
+
+    @Test
+    public void testCompareTopicsInputPlaceholder() {
+
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        SearchPageObject.clickSkipButton();
+        SearchPageObject.initSearchInput();
+
+        String topic_placeholder_text = SearchPageObject.getSearchInputText();
+        assertEquals(
+                "We see unexpected text!",
+                "Search Wikipedia",
+                topic_placeholder_text
+        );
+    }
 }
