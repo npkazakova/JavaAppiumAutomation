@@ -74,4 +74,19 @@ public class SearchTests extends CoreTestCase
                 topic_placeholder_text
         );
     }
+
+    @Test
+    public void testFindMultipleArticles() {
+
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        SearchPageObject.clickSkipButton();
+        SearchPageObject.initSearchInput();
+
+        String search_line = "Thailand";
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.assertMultipleElementsPresent();
+        SearchPageObject.clickCancelSearch();
+        SearchPageObject.waitForMultipleElementsNotPresent();
+    }
 }
