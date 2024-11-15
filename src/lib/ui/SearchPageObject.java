@@ -12,7 +12,8 @@ public class SearchPageObject extends MainPageObject
             SEARCH_INPUT = "//*[contains(@text, 'Search Wikipedia')]",
             SEARCH_INPUT_PLACEHOLDER = "org.wikipedia:id/search_src_text",
             SEARCH_CANCEL_BUTTON = "org.wikipedia:id/search_close_btn",
-            SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='{SUBSTRING}']",
+            SEARCH_RESULTS_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='{SUBSTRING}']",
+            SEARCH_RESULTS_IN_LIST_BY_TITLE_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/page_list_item_title'][contains(@text,'{TITLE}')]",
             SEARCH_RESULT_ELEMENT = "(//*[@resource-id='org.wikipedia:id/search_container']/*[@class='android.widget.FrameLayout'])[position()>1]",
             SEARCH_MULTIPLE_RESULTS = "//*[@resource-id='org.wikipedia:id/search_results_display']//*[contains(@class, 'ViewGroup')]",
             SEARCH_EMPTY_RESULT_ELEMENT = "//*[@text='No results']",
@@ -26,12 +27,17 @@ public class SearchPageObject extends MainPageObject
     /* TEMPLATES METHODS */
     private static String getResultSearchElement(String substring)
     {
-        return SEARCH_RESULT_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
+        return SEARCH_RESULTS_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
     }
 
     private static String getResultsContainKeyword(String substring)
     {
         return SEARCH_KEYWORD_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
+    }
+
+    private static String getResultsSearchElementInListByTitle(String title)
+    {
+        return SEARCH_RESULTS_IN_LIST_BY_TITLE_BY_SUBSTRING_TPL.replace("{TITLE}", title);
     }
     /* TEMPLATES METHODS */
 
@@ -115,5 +121,23 @@ public class SearchPageObject extends MainPageObject
     public void assertThereIsNoResultOfSearch()
     {
         this.assertElementNotPresent(By.xpath(SEARCH_EMPTY_RESULT_ELEMENT), "We supposed not to find any results");
+    }
+
+    public void getSearchElementInListByTitle(String title)
+    {
+        String search_result_xpath = getResultsSearchElementInListByTitle(title);
+        this.waitForElementPresent(By.xpath(search_result_xpath), "Cannot find search result with title " + title, 15);
+    }
+
+    public void getArticleInListNotPresentByTitle(String title)
+    {
+        String search_result_xpath = getResultsSearchElementInListByTitle(title);
+        this.waitForElementNotPresent(By.xpath(search_result_xpath), "Search result with title " + title + " is still present", 15);
+    }
+
+    public void clickByArticleWithTitle(String title)
+    {
+        String search_result_xpath = getResultsSearchElementInListByTitle(title);
+        this.waitForElementAndClick(By.xpath(search_result_xpath), "Cannot find and click search result with title " + title, 5);
     }
 }
