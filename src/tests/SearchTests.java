@@ -9,19 +9,27 @@ public class SearchTests extends CoreTestCase
     @Test
     public void testSearch() {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        String search_line = "Java";
+        String article_title = "Java (programming language)";
+
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForSearchResult("Java (programming language)");
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.waitForSearchResult(article_title);
     }
 
     @Test
     public void testCancelSearch() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        String search_line = "Java";
+
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
+        SearchPageObject.typeSearchLine(search_line);
+
         SearchPageObject.waitForCancelButtonToAppear();
         SearchPageObject.clickCancelSearch();
         SearchPageObject.waitForCancelButtonToDisappear();
@@ -30,10 +38,12 @@ public class SearchTests extends CoreTestCase
     @Test
     public void testAmountOfNotEmptySearch() {
 
+        String search_line = "Linkin Park discography";
+
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
-        String search_line = "Linkin Park discography";
+
         SearchPageObject.typeSearchLine(search_line);
         int amount_of_search_results = SearchPageObject.getAmountOfFoundArticles();
 
@@ -47,10 +57,13 @@ public class SearchTests extends CoreTestCase
     public void testAmountOfEmptySearch() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        String search_line = "zgdjgdvvcs";
+
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
-        String search_line = "zgdjgdvvcs";
         SearchPageObject.typeSearchLine(search_line);
+
         SearchPageObject.waitForEmptyResultsLabel();
         SearchPageObject.assertThereIsNoResultOfSearch();
     }
@@ -74,11 +87,13 @@ public class SearchTests extends CoreTestCase
     public void testFindMultipleArticles() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
-        SearchPageObject.clickSkipButton();
-        SearchPageObject.initSearchInput();
 
         String search_line = "Thailand";
+
+        SearchPageObject.clickSkipButton();
+        SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
+
         SearchPageObject.assertMultipleElementsPresent();
         SearchPageObject.clickCancelSearch();
         SearchPageObject.waitForMultipleElementsNotPresent();
@@ -88,10 +103,14 @@ public class SearchTests extends CoreTestCase
     public void testSearchResultsContainKeyword() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        String search_line = "Java";
+        String keyword = "Java";
+
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.verifyResultsContainKeyword("Java");
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.verifyResultsContainKeyword(keyword);
     }
 
 }

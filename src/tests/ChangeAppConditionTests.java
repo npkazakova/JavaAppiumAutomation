@@ -11,15 +11,18 @@ public class ChangeAppConditionTests extends CoreTestCase {
     public void testChangeScreenOrientationOnSearchResults()
     {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+
+        String search_line = "Java";
+        String article_title = "Java (programming language)";
 
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.clickByArticleWithSubstring("Java (programming language)");
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.clickByArticleWithSubstring(article_title);
 
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+
         String description_before_rotation = ArticlePageObject.getArticleDescription();
-
         this.rotateScreenLandscape();
         String description_after_rotation = ArticlePageObject.getArticleDescription();
 
@@ -44,12 +47,15 @@ public class ChangeAppConditionTests extends CoreTestCase {
     {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
+        String search_line = "Java";
+        String article_title = "Java (programming language)";
+
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.waitForSearchResult("Java (programming language)");
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.waitForSearchResult(article_title);
 
         this.backgroundApp(2);
-        SearchPageObject.waitForSearchResult("Java (programming language)"); // баг в приложении, поиск сбрасывается после возвращения из фона
+        SearchPageObject.waitForSearchResult(article_title); // баг в приложении, поиск сбрасывается после возвращения из фона
     }
 }

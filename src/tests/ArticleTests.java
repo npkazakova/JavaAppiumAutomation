@@ -11,12 +11,16 @@ public class ArticleTests extends CoreTestCase
     public void testCompareArticleDescription() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+
+        String search_line = "Java";
+        String article_title = "Java (programming language)";
+
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Java");
-        SearchPageObject.clickByArticleWithSubstring("Java (programming language)");
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.clickByArticleWithSubstring(article_title);
 
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
         String article_description = ArticlePageObject.getArticleDescription();
 
         assertEquals(
@@ -30,12 +34,15 @@ public class ArticleTests extends CoreTestCase
     public void testArticleHasDescription() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+
+        String search_line = "Appium";
+        String article_title = "Appium";
+
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Appium");
-        SearchPageObject.clickByArticleWithSubstring("Appium");
-
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.clickByArticleWithSubstring(article_title);
         ArticlePageObject.assertArticleDescriptionPresent();
     }
 
@@ -43,12 +50,17 @@ public class ArticleTests extends CoreTestCase
     public void testSwipeArticle() {
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+
+        String search_line = "Appium";
+        String article_title = "Appium";
+
         SearchPageObject.clickSkipButton();
         SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine("Appium");
-        SearchPageObject.clickByArticleWithSubstring("Appium");
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.clickByArticleWithSubstring(article_title);
 
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+
         ArticlePageObject.waitForDescriptionElement();
         ArticlePageObject.swipeToFooter();
     }
