@@ -12,6 +12,7 @@ public class SearchPageObject extends MainPageObject
             SEARCH_INPUT = "//*[contains(@text, 'Search Wikipedia')]",
             SEARCH_INPUT_PLACEHOLDER = "org.wikipedia:id/search_src_text",
             SEARCH_CANCEL_BUTTON = "org.wikipedia:id/search_close_btn",
+            SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL = "//*[contains(@text,'{TITLE}')]/following-sibling::*[contains(@text,'{DESCRIPTION}')]",
             SEARCH_RESULTS_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='{SUBSTRING}']",
             SEARCH_RESULTS_IN_LIST_BY_TITLE_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/page_list_item_title'][contains(@text,'{TITLE}')]",
             SEARCH_RESULT_ELEMENT = "(//*[@resource-id='org.wikipedia:id/search_container']/*[@class='android.widget.FrameLayout'])[position()>1]",
@@ -38,6 +39,11 @@ public class SearchPageObject extends MainPageObject
     private static String getResultsSearchElementInListByTitle(String title)
     {
         return SEARCH_RESULTS_IN_LIST_BY_TITLE_BY_SUBSTRING_TPL.replace("{TITLE}", title);
+    }
+
+    private static String getResultsSearchElementByTitleAndDescription(String title, String description)
+    {
+        return SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL.replace("{TITLE}", title).replace("{DESCRIPTION}", description);
     }
     /* TEMPLATES METHODS */
 
@@ -139,5 +145,11 @@ public class SearchPageObject extends MainPageObject
     {
         String search_result_xpath = getResultsSearchElementInListByTitle(title);
         this.waitForElementAndClick(By.xpath(search_result_xpath), "Cannot find and click search result with title " + title, 5);
+    }
+
+    public void waitForElementByTitleAndDescription(String title, String description)
+    {
+        String search_result_xpath = getResultsSearchElementByTitleAndDescription(title, description);
+        this.waitForElementPresent(By.xpath(search_result_xpath), "Cannot find search result with title '" + title + "' and description '" + description + "'", 15);
     }
 }
