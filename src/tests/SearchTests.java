@@ -113,4 +113,25 @@ public class SearchTests extends CoreTestCase
         SearchPageObject.verifyResultsContainKeyword(keyword);
     }
 
+    @Test
+    public void testSearchResultsContainSpecificArticles() {
+
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        String search_line = "Java";
+        String[][] expectedResults = {
+                {"Java (programming language)", "Object-oriented programming language"},
+                {"JavaScript", "High-level programming language"},
+                {"Java version history", "List of versions of the Java programming language"}
+        };
+
+        SearchPageObject.clickSkipButton();
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine(search_line);
+        for(String[] result : expectedResults) {
+            String title = result[0];
+            String description = result[1];
+            SearchPageObject.waitForElementByTitleAndDescription(title, description);
+        }
+    }
 }
