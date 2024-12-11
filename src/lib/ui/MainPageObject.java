@@ -49,6 +49,7 @@ public class MainPageObject {
     }
 
     public void assertMultipleElementsPresent(String locator, String error_message, long timeoutInSeconds) {
+        By by = this.getLocatorByString(locator);
         waitForElementPresent(locator, error_message, timeoutInSeconds);
         List<WebElement> elements = driver.findElements(by);
         assertTrue(
@@ -87,7 +88,7 @@ public class MainPageObject {
     public void verifyResultsContainKeyword(String locator, String keyword, String error_message, long timeoutInSeconds) {
         By by = this.getLocatorByString(locator);
         String error_message1 = "Cannot find response elements";
-        waitForElementPresent(by, error_message1, timeoutInSeconds);
+        waitForElementPresent(locator, error_message1, timeoutInSeconds);
 
         List<WebElement> elements = driver.findElements(by);
 
@@ -147,7 +148,7 @@ public class MainPageObject {
         while (driver.findElements(by).size() == 0){
 
             if(already_swiped > max_swipes){
-                waitForElementPresent(by, "Cannot find element by swipping up. \n" + error_message, 0);
+                waitForElementPresent(locator, "Cannot find element by swipping up. \n" + error_message, 0);
                 return;
             }
 
@@ -195,7 +196,7 @@ public class MainPageObject {
     public void swipeElementToLeft(String locator, String error_message) {
 
         // Находим элемент на экране, ожидая его появления в течение 10 секунд.
-        WebElement element = waitForElementPresent(this.getLocatorByString(locator), error_message, 10);
+        WebElement element = waitForElementPresent(locator, error_message, 10);
 
         // Получаем координаты элемента на экране.
         Point location = element.getLocation();
@@ -259,12 +260,14 @@ public class MainPageObject {
     }
 
     public void assertElementPresent(String locator, String error_message) {
-        WebElement element = driver.findElement(locator);
+        By by = this.getLocatorByString(locator);
+        WebElement element = driver.findElement(by);
         assertNotNull(error_message, element);
     }
 
     public void assertElementNotPresent(String locator, String error_message) {
-        List<WebElement> elements = driver.findElements(locator);
+        By by = this.getLocatorByString(locator);
+        List<WebElement> elements = driver.findElements(by);
         WebElement element = elements.get(0);
         String elementText = element.getText();
         if (!elementText.equals("No results")) {
