@@ -1,15 +1,22 @@
 package lib;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import junit.framework.TestCase;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.ScreenOrientation;
 
 import java.net.URL;
 import java.time.Duration;
 
 public class iOSTestCase extends TestCase {
+
+    protected void backgroundApp(int seconds)
+    {
+        driver.runAppInBackground(seconds);
+        driver.runAppInBackground(Duration.ofSeconds(seconds));
+    }
 
     protected AppiumDriver driver;
     private static String AppiumURL = "http://127.0.0.1:4723";
