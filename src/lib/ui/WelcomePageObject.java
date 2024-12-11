@@ -6,12 +6,14 @@ import org.openqa.selenium.By;
 public class WelcomePageObject extends MainPageObject
 {
     private static final String
-        STEP_LEARN_MORE_LINK = "//XCUIElementTypeStaticText[@name=Learn more about Wikipedia]",
+
+
+        STEP_LEARN_MORE_LINK = "//*[@name='Learn more about Wikipedia']",
         STEP_NEW_WAYS_TO_EXPLORE_TEXT = "New ways to explore",
-        STEP_ADD_OR_EDIT_PREFERRED_LANG = "//XCUIElementTypeStaticText[@name=Add or edit preferred languages]",
-        STEP_LEARN_MORE_ABOUT_OUR_PRIVACY = "//XCUIElementTypeStaticText[@name=Learn more about our privacy policy and terms of use]",
-        NEXT_LINK = "//XCUIElementTypeStaticText[@name=Next]",
-        GET_STARTED_BUTTON = "//XCUIElementTypeStaticText[@name=Get started]";
+        STEP_ADD_OR_EDIT_PREFERRED_LANG = "//*[@name='Add or edit preferred languages']",
+        STEP_LEARN_MORE_ABOUT_OUR_PRIVACY = "//*[@name='Learn more about our privacy policy and terms of use']",
+        NEXT_LINK = "//*[@name='Next']",
+        GET_STARTED_BUTTON = "//*[@name='Get started']";
 
 
     public WelcomePageObject(AppiumDriver driver)
