@@ -3,14 +3,18 @@ package lib.ui;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.ScreenOrientation;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 
+import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
+
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -115,9 +119,12 @@ public class MainPageObject {
         int end_y = (int) (size.height * 0.2); // 20% верхняя часть экрана
 
         action
-                .press(x, start_y)
-                .waitAction(timeOfSwipe)
-                .moveTo(x, end_y)
+//                .press(x, start_y)
+//                .waitAction(timeOfSwipe)
+//                .moveTo(x, end_y)
+                .press(PointOption.point(x, start_y))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(timeOfSwipe)))
+                .moveTo(PointOption.point(x, end_y))
                 .release()
                 .perform();
     }
@@ -142,27 +149,86 @@ public class MainPageObject {
         }
     }
 
-    public void swipeElementToLeft(By by, String error_message)
-    {
-        WebElement element = waitForElementPresent(
-                by,
-                error_message,
-                10);
+//    public void swipeElementToLeft(By by, String error_message)
+//    {
+//        WebElement element = waitForElementPresent(
+//                by,
+//                error_message,
+//                10);
+//
+//        int left_x = element.getLocation().getX();
+//        int right_x = left_x + element.getSize().getWidth();
+//        int upper_y = element.getLocation().getY();
+//        int lower_y = upper_y + element.getSize().getHeight();
+//        int middle_y = (upper_y + lower_y) / 2;
+//
+//        TouchAction action = new TouchAction(driver);
+//        action
+//                .press(right_x, middle_y)
+//                .waitAction(150)
+//                .moveTo(left_x, middle_y)
+//                .release()
+//                .perform();
+//    }
 
-        int left_x = element.getLocation().getX();
-        int right_x = left_x + element.getSize().getWidth();
-        int upper_y = element.getLocation().getY();
-        int lower_y = upper_y + element.getSize().getHeight();
-        int middle_y = (upper_y + lower_y) / 2;
+    public void swipeElementToLeft(String locator_with_type, String error_message) {
 
-        TouchAction action = new TouchAction(driver);
-        action
-                .press(right_x, middle_y)
-                .waitAction(150)
-                .moveTo(left_x, middle_y)
-                .release()
-                .perform();
+        // Находим элемент на экране, ожидая его появления в течение 10 секунд.
+        WebElement element = waitForElementPresent(locator_with_type, error_message, 10);
+
+        // Получаем координаты элемента на экране.
+        Point location = element.getLocation();
+        // Получаем размеры элемента (ширину и высоту).
+        Dimension size = element.getSize();
+
+        // Координата по оси X левой границы элемента.
+        int left_x = location.getX();
+        // Координата по оси X правой границы элемента.
+        int right_x = left_x + size.getWidth();
+        // Координата по оси Y верхней границы элемента.
+        int upper_y = location.getY();
+        // Координата по оси Y нижней границы элемента.
+        int lower_y = upper_y + size.getHeight();
+        // Координата по оси Y средней линии элемента.
+        int middle_y = upper_y + (size.getHeight() / 2);
+
+        // Начальная координата по оси X для свайпа (чуть левее правого края элемента).
+        int start_x = right_x - 20;
+        // Конечная координата по оси X для свайпа (чуть правее левого края элемента).
+        int end_x = left_x + 20;
+        // Начальная координата по оси Y для свайпа (по центру элемента).
+        int start_y = middle_y;
+        // Конечная координата по оси Y для свайпа (также по центру элемента).
+        int end_y = middle_y;
+
+        // Выполняем свайп с начальной точки до конечной с заданной продолжительностью.
+        this.swipe(
+                new Point(start_x, start_y),
+                new Point(end_x, end_y),
+                Duration.ofMillis(550)  // Устанавливаем продолжительность свайпа 550 миллисекунд.
+        );
     }
+
+    protected void swipe(Point start, Point end, Duration duration) {
+
+        // Создаем объект, представляющий палец для выполнения свайпа.
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        // Создаем последовательность действий для выполнения свайпа.
+        Sequence swipe = new Sequence(finger, 1);
+
+        // Добавляем действие для перемещения пальца к начальной точке.
+        swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), start.x, start.y));
+        // Добавляем действие для нажатия на экран в начальной точке.
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        // Добавляем действие для перемещения пальца из начальной точки в конечную в течение заданного времени.
+        swipe.addAction(finger.createPointerMove(duration, PointerInput.Origin.viewport(), end.x, end.y));
+        // Добавляем действие для отпускания пальца от экрана в конечной точке.
+        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        // Выполняем последовательность действий (свайп).
+        this.driver.perform(Arrays.asList(swipe));
+    }
+
 
     public int getAmountOfElements(By by)
     {
@@ -195,6 +261,33 @@ public class MainPageObject {
         if (driver.getOrientation() != ScreenOrientation.PORTRAIT) {
             driver.rotate(ScreenOrientation.PORTRAIT);
         }
+    }
+
+    public void scroll(int timeOfScroll)
+    {
+        Dimension size = driver.manage().window().getSize();
+        int startY = (int) (size.height * 0.70);
+        int endY = (int) (size.height * 0.30);
+        int centerX = size.width / 2;
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH,"finger");
+        Sequence swipe = new Sequence(finger,1)
+
+                //Двигаем палец на начальную позицию
+                .addAction(finger.createPointerMove(Duration.ofSeconds(0),
+                        PointerInput.Origin.viewport(), centerX, startY))
+                //Палец прикасается к экрану
+                .addAction(finger.createPointerDown(0))
+
+                //Палец двигается к конечной точке
+                .addAction(finger.createPointerMove(Duration.ofMillis(timeOfScroll),
+                        PointerInput.Origin.viewport(), centerX, endY))
+
+                //Убираем палец с экрана
+                .addAction(finger.createPointerUp(0));
+
+        //Выполняем действия
+        driver.perform(Arrays.asList(swipe));
     }
 
 }
