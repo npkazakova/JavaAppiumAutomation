@@ -20,21 +20,9 @@ public class CoreTestCase extends TestCase {
     {
         super.setUp();
 
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-
-//        capabilities.setCapability("platformName", "Android");
-//        capabilities.setCapability("deviceName", "AndroidTestDevice");
-//        capabilities.setCapability("platformVersion", "8.1");
-//        //capabilities.setCapability("platformVersion","8.0");
-//        capabilities.setCapability("automationName", "Appium");
-//        capabilities.setCapability("appPackage", "org.wikipedia");
-//        capabilities.setCapability("appActivity", ".main.MainActivity");
-//        capabilities.setCapability("app", "D:/Репозитории/JavaAppiumAutomation/apks/org.wikipedia.apk");
-//        //сapabilities.setCapability("app","/Users/nataliakazakova/Desktop/JavaAppiumAutomation/apks/org.wikipedia.apk");
         DesiredCapabilities capabilities = this.getCapabilitiesByPlatformEnv();
         driver = new AndroidDriver(new URL(AppiumURL), capabilities);
         this.rotateScreenPortrait();
-
     }
 
     @Override
