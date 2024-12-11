@@ -14,7 +14,7 @@ public class iOSTestCase extends TestCase {
 
     protected void backgroundApp(int seconds)
     {
-        driver.runAppInBackground(seconds);
+        //driver.runAppInBackground(seconds);
         driver.runAppInBackground(Duration.ofSeconds(seconds));
     }
 
@@ -57,10 +57,10 @@ public class iOSTestCase extends TestCase {
     {
         driver.rotate(org.openqa.selenium.ScreenOrientation.LANDSCAPE);
     }
-
-    protected void backgroundApp(int seconds)
-    {
-        driver.runAppInBackground(Duration.ofSeconds(seconds));
-    }
+//
+//    protected void backgroundApp(int seconds)
+//    {
+//        driver.runAppInBackground(Duration.ofSeconds(seconds));
+//    }
 }
 

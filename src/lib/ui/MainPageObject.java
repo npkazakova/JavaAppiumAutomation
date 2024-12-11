@@ -172,10 +172,27 @@ public class MainPageObject {
 //                .perform();
 //    }
 
+    public By getLocatorByString(String locator_with_type) {
+        String[] locatorParts = locator_with_type.split(":", 2);
+        String type = locatorParts[0];
+        String locator = locatorParts[1];
+
+        switch (type) {
+            case "xpath":
+                return By.xpath(locator);
+            case "id":
+                return By.id(locator);
+            case "css":
+                return By.cssSelector(locator);
+            default:
+                throw new IllegalArgumentException("Unknown locator type: " + type);
+        }
+    }
+
     public void swipeElementToLeft(String locator_with_type, String error_message) {
 
         // Находим элемент на экране, ожидая его появления в течение 10 секунд.
-        WebElement element = waitForElementPresent(locator_with_type, error_message, 10);
+        WebElement element = waitForElementPresent(this.getLocatorByString(locator_with_type), error_message, 10);
 
         // Получаем координаты элемента на экране.
         Point location = element.getLocation();

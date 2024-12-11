@@ -59,7 +59,7 @@ public class MyListsPageObject extends MainPageObject{
         this.waitForArticleToAppearByTitle(article_title);
         String article_xpath = getFolderXpathByName(article_title);
         this.swipeElementToLeft(
-                By.xpath(article_xpath),
+                article_xpath,
                 "Cannot find saved article"
         );
         this.waitForArticleToDisappearByTitle(article_title);
