@@ -2,6 +2,7 @@ package tests;
 
 import lib.CoreTestCase;
 import lib.ui.*;
+import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 
 public class MyListsTests extends CoreTestCase {
@@ -9,7 +10,7 @@ public class MyListsTests extends CoreTestCase {
     @Test
     public void testSaveFirstArticleToMyList () {
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
         NavigationUI NavigationUI = new NavigationUI(driver);
         MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
@@ -32,7 +33,7 @@ public class MyListsTests extends CoreTestCase {
     @Test
     public void testSaveTwoArticlesToMyList () {
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
         MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
 

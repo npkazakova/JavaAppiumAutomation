@@ -3,6 +3,7 @@ package tests;
 import lib.CoreTestCase;
 import lib.ui.ArticlePageObject;
 import lib.ui.SearchPageObject;
+import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 
 public class ArticleTests extends CoreTestCase
@@ -10,7 +11,7 @@ public class ArticleTests extends CoreTestCase
     @Test
     public void testCompareArticleDescription() {
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
 
         String search_line = "Java";
@@ -33,7 +34,7 @@ public class ArticleTests extends CoreTestCase
     @Test
     public void testArticleHasDescription() {
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
 
         String search_line = "Appium";
@@ -49,7 +50,7 @@ public class ArticleTests extends CoreTestCase
     @Test
     public void testSwipeArticle() {
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
 
         String search_line = "Appium";
