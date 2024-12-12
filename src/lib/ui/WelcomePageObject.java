@@ -12,7 +12,8 @@ public class WelcomePageObject extends MainPageObject
         STEP_ADD_OR_EDIT_PREFERRED_LANG = "xpath://*[@name='Add or edit preferred languages']",
         STEP_LEARN_MORE_ABOUT_OUR_PRIVACY = "xpath://*[@name='Learn more about our privacy policy and terms of use']",
         NEXT_LINK = "xpath://*[@name='Next']",
-        GET_STARTED_BUTTON = "xpath://*[@name='Get started']";
+        GET_STARTED_BUTTON = "xpath://*[@name='Get started']",
+        SKIP = "xpath://*[@name='Skip']";
 
 
     public WelcomePageObject(AppiumDriver driver)
@@ -48,5 +49,10 @@ public class WelcomePageObject extends MainPageObject
     public void clickGetStartedButton()
     {
         this.waitForElementAndClick(GET_STARTED_BUTTON, "Cannot find and click 'Get started' Button", 10);
+    }
+
+    public void clickSkip()
+    {
+        this.waitForElementAndClick(SKIP, "Cannot find and click skip button", 5);
     }
 }
