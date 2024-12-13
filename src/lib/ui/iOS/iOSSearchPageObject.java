@@ -1,4 +1,6 @@
 package lib.ui.iOS;
+import lib.ui.SearchPageObject;
+import io.appium.java_client.AppiumDriver;
 
 public class iOSSearchPageObject extends SearchPageObject {
     static {
@@ -10,7 +12,7 @@ public class iOSSearchPageObject extends SearchPageObject {
     SEARCH_RESULT_ELEMENT ="xpath://XCUIElementTypeStaticText";
     SEARCH_MULTIPLE_RESULTS ="xpath://*[@resource-id='org.wikipedia:id/search_results_display']//*[contains(@class, 'ViewGroup')]";
     //SEARCH_EMPTY_RESULT_ELEMENT ="xpath://*[@text='No results']";
-    SEARCH_NO_RESULTS ="id:No results found";
+    //SEARCH_NO_RESULTS ="id:No results found";
 
     //SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL ="id:{TITLE}:{DESCRIPTION};
     SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL = "xpath://*[contains(@text,'{TITLE}')]/following-sibling::*[contains(@text,'{DESCRIPTION}')]";
