@@ -6,17 +6,18 @@ abstract public class SearchPageObject extends MainPageObject
 {
 
     protected static String
-            SEARCH_SKIP_BUTTON,
+            SEARCH_SKIP_LINK,
             SEARCH_INIT_ELEMENT,
             SEARCH_INPUT,
             SEARCH_INPUT_PLACEHOLDER,
             SEARCH_CANCEL_BUTTON,
-            SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL,
-            SEARCH_RESULTS_BY_SUBSTRING_TPL,
-            SEARCH_RESULTS_IN_LIST_BY_TITLE_BY_SUBSTRING_TPL,
             SEARCH_RESULT_ELEMENT,
             SEARCH_MULTIPLE_RESULTS,
             SEARCH_EMPTY_RESULT_ELEMENT,
+            SEARCH_NO_RESULTS,
+            SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL,
+            SEARCH_RESULTS_BY_SUBSTRING_TPL,
+            SEARCH_RESULTS_IN_LIST_BY_TITLE_BY_SUBSTRING_TPL,
             SEARCH_KEYWORD_BY_SUBSTRING_TPL;
 
     public SearchPageObject(AppiumDriver driver)
@@ -48,7 +49,7 @@ abstract public class SearchPageObject extends MainPageObject
 
     public void clickSkipButton()
     {
-        this.waitForElementAndClick(SEARCH_SKIP_BUTTON, "Cannot find 'Skip' button", 5);
+        this.waitForElementAndClick(SEARCH_SKIP_LINK, "Cannot find 'Skip' link", 5);
     }
 
     public void initSearchInput()
@@ -121,6 +122,16 @@ abstract public class SearchPageObject extends MainPageObject
     public void waitForEmptyResultsLabel()
     {
         this.waitForElementPresent(SEARCH_EMPTY_RESULT_ELEMENT, "Cannot find empty result element", 15);
+    }
+
+    public void waitForNoResultsFoundLabel()
+    {
+        this.waitForElementPresent(SEARCH_NO_RESULTS, "Cannot find 'No results' label", 15);
+    }
+
+    public void assertNoResultFound()
+    {
+        this.assertElementNotPresent(SEARCH_NO_RESULTS, "We supposed not to find any results");
     }
 
     public void assertThereIsNoResultOfSearch()

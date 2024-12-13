@@ -5,7 +5,7 @@ import lib.ui.SearchPageObject;
 
 public class AndroidSearchPageObject extends SearchPageObject {
     static {
-    SEARCH_SKIP_BUTTON ="id:org.wikipedia:id/fragment_onboarding_skip_button";
+    SEARCH_SKIP_LINK ="xpath://*[@name='Skip']";
     SEARCH_INIT_ELEMENT ="xpath://*[contains(@text, 'Search Wikipedia')]";
     SEARCH_INPUT ="xpath://*[contains(@text, 'Search Wikipedia')]";
     SEARCH_INPUT_PLACEHOLDER ="id:org.wikipedia:id/search_src_text";

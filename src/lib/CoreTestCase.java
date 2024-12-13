@@ -49,5 +49,10 @@ public class CoreTestCase extends TestCase {
             WelcomePageObject.clickSkip();
         }
     }
+
+    protected boolean isPlatformIOS() {
+        String platform = System.getenv("PLATFORM");
+        return platform != null && platform.equalsIgnoreCase("ios");
+    }
 }
 
