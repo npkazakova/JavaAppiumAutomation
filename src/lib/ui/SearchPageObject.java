@@ -1,6 +1,7 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import lib.Platform;
 
 abstract public class SearchPageObject extends MainPageObject
 {
@@ -58,10 +59,17 @@ abstract public class SearchPageObject extends MainPageObject
         this.waitForElementAndClick(SEARCH_INIT_ELEMENT, "Cannot find and click search init element", 5);
     }
 
-    public String getSearchInputText()
-    {
+//    public String getSearchInputText()
+//    {
+//        this.waitForElementPresent(SEARCH_INPUT_PLACEHOLDER, "Cannot find search input field", 15);
+//        return this.waitForElementAndGetAttribute(SEARCH_INPUT_PLACEHOLDER, "text", "Cannot find placeholder", 5);
+//    }
+
+    public String getSearchInputPlaceholder() {
         this.waitForElementPresent(SEARCH_INPUT_PLACEHOLDER, "Cannot find search input field", 15);
-        return this.waitForElementAndGetAttribute(SEARCH_INPUT_PLACEHOLDER, "text", "Cannot find placeholder", 5);
+
+        String attribute = Platform.getInstance().isIOS() ? "label" : "text";
+        return this.waitForElementAndGetAttribute(SEARCH_INPUT_PLACEHOLDER, attribute, "Cannot find placeholder", 5);
     }
 
     public void waitForCancelButtonToAppear()
@@ -127,11 +135,6 @@ abstract public class SearchPageObject extends MainPageObject
     public void waitForNoResultsFoundLabel()
     {
         this.waitForElementPresent(SEARCH_NO_RESULTS, "Cannot find 'No results' label", 15);
-    }
-
-    public void assertNoResultFound()
-    {
-        this.assertElementNotPresent(SEARCH_NO_RESULTS, "We supposed not to find any results");
     }
 
     public void assertThereIsNoResultOfSearch()

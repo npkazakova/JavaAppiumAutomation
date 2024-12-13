@@ -15,8 +15,6 @@ public class SearchTests extends CoreTestCase
         String search_line = "Java";
         String article_title = "Java (programming language)";
 
-//        SearchPageObject.clickSkipButton();
-
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();
         }
@@ -32,7 +30,6 @@ public class SearchTests extends CoreTestCase
 
         String search_line = "Java";
 
-//        SearchPageObject.clickSkipButton();
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();
         }
@@ -50,7 +47,7 @@ public class SearchTests extends CoreTestCase
         String search_line = "Linkin Park discography";
 
         SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
-//        SearchPageObject.clickSkipButton();
+
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();
         }
@@ -88,15 +85,14 @@ public class SearchTests extends CoreTestCase
     public void testCompareTopicsInputPlaceholder() {
 
         SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
-//        SearchPageObject.clickSkipButton();
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();
         }
         SearchPageObject.initSearchInput();
 
-        String topic_placeholder_text = SearchPageObject.getSearchInputText();
+        String topic_placeholder_text = SearchPageObject.getSearchInputPlaceholder();
         assertEquals(
-                "We see unexpected text!",
+                "We see unexpected placeholder text!",
                 "Search Wikipedia",
                 topic_placeholder_text
         );
