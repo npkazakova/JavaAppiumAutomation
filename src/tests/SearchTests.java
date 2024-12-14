@@ -135,7 +135,7 @@ public class SearchTests extends CoreTestCase
     @Test
     public void testSearchResultsContainSpecificArticles() {
 
-        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
         String search_line = "Java";
         String[][] expectedResults = {
