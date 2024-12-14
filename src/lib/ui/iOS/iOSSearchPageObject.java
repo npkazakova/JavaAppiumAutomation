@@ -10,7 +10,7 @@ public class iOSSearchPageObject extends SearchPageObject {
     SEARCH_INPUT_PLACEHOLDER ="id:Search Wikipedia";
     SEARCH_CANCEL_BUTTON ="xpath://XCUIElementTypeStaticText[@name='Cancel']";
     SEARCH_RESULT_ELEMENT ="xpath://XCUIElementTypeStaticText";
-    SEARCH_MULTIPLE_RESULTS ="xpath://*[@resource-id='org.wikipedia:id/search_results_display']//*[contains(@class, 'ViewGroup')]";
+    SEARCH_MULTIPLE_RESULTS ="xpath://XCUIElementTypeApplication[@name=\"Wikipedia\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeCollectionView/XCUIElementTypeCell";
     SEARCH_EMPTY_RESULT_ELEMENT ="xpath://*[@text='No results']";
     SEARCH_NO_RESULTS ="id:No results found";
 
