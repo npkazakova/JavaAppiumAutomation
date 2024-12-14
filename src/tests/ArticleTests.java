@@ -40,8 +40,8 @@ public class ArticleTests extends CoreTestCase
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
 
-        String search_line = "Appium";
-        String article_title = "Appium";
+        String search_line = "Java";
+        String article_title = "Object-oriented programming language";
 
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();
@@ -58,8 +58,8 @@ public class ArticleTests extends CoreTestCase
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
 
-        String search_line = "Appium";
-        String article_title = "Appium";
+        String search_line = "Java";
+        String article_title = "Object-oriented programming language";
 
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();

@@ -157,41 +157,24 @@ public class MainPageObject {
         }
     }
 
-//    public void swipeElementToLeft(By by, String error_message)
-//    {
-//        WebElement element = waitForElementPresent(
-//                by,
-//                error_message,
-//                10);
-//
-//        int left_x = element.getLocation().getX();
-//        int right_x = left_x + element.getSize().getWidth();
-//        int upper_y = element.getLocation().getY();
-//        int lower_y = upper_y + element.getSize().getHeight();
-//        int middle_y = (upper_y + lower_y) / 2;
-//
-//        TouchAction action = new TouchAction(driver);
-//        action
-//                .press(right_x, middle_y)
-//                .waitAction(150)
-//                .moveTo(left_x, middle_y)
-//                .release()
-//                .perform();
-//    }
+    public void swipeUpTillElementAppear(String locator, String error_message, int max_swipes)
+    {
+        int already_swiped = 0;
+        while (!this.isElementLocatedOnTheScreen(locator)){
+            if(already_swiped > max_swipes){
+                assertTrue(error_message, this.isElementLocatedOnTheScreen(locator));
+            }
+            swipeUpQuick();
+            ++already_swiped;
+        }
+    }
 
-//    public By getLocatorByString(String locator) {
-//        String[] locatorParts = locator.split(":", 2);
-//        String type = locatorParts[0];
-//        String locator = locatorParts[1];
-//
-//        if (type.equals("xpath")) {
-//            return By.xpath(locator);
-//        } else if (type.equals("id")) {
-//            return By.id(locator);
-//        } else {
-//            throw new IllegalArgumentException("Cannot get type of locator. Locator: " + locator);
-//        }
-//    }
+    public boolean isElementLocatedOnTheScreen(String locator)
+    {
+        int element_location_by_y = this.waitForElementPresent(locator, "Cannot find element by locator", 5).getLocation().getY();
+        int screen_size_by_y = driver.manage().window().getSize().getHeight();
+        return element_location_by_y < screen_size_by_y;
+    }
 
     public void swipeElementToLeft(String locator, String error_message) {
 
