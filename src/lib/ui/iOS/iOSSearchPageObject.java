@@ -15,7 +15,7 @@ public class iOSSearchPageObject extends SearchPageObject {
     SEARCH_NO_RESULTS ="id:No results found";
 
     //SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL ="id:{TITLE}:{DESCRIPTION};
-    SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL = "xpath://*[contains(@text,'{TITLE}')]/following-sibling::*[contains(@text,'{DESCRIPTION}')]";
+    SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL = "xpath://*[contains(@name,'{TITLE}')]/following-sibling::*[contains(@name,'{DESCRIPTION}')]";
     SEARCH_RESULTS_BY_SUBSTRING_TPL = "xpath://XCUIElementTypeStaticText[contains(@name,'{SUBSTRING}')]";
     SEARCH_RESULTS_IN_LIST_BY_TITLE_BY_SUBSTRING_TPL ="xpath://*[@resource-id='org.wikipedia:id/page_list_item_title'][contains(@text,'{TITLE}')]";
     SEARCH_KEYWORD_BY_SUBSTRING_TPL = "xpath://*[contains(@name, '{SUBSTRING}')]";
