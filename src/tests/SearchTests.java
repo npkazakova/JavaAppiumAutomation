@@ -104,8 +104,7 @@ public class SearchTests extends CoreTestCase
         SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
 
         String search_line = "Thailand";
-
-//        SearchPageObject.clickSkipButton();
+        
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();
         }
@@ -125,7 +124,6 @@ public class SearchTests extends CoreTestCase
         String search_line = "Java";
         String keyword = "Java";
 
-//        SearchPageObject.clickSkipButton();
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();
         }
