@@ -1,6 +1,7 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import lib.Platform;
 import org.openqa.selenium.WebElement;
 
 public abstract class ArticlePageObject extends MainPageObject
@@ -60,8 +61,12 @@ public abstract class ArticlePageObject extends MainPageObject
 
     public String getArticleDescription()
     {
-        WebElement description_element = waitForDescriptionElement();
-        return description_element.getAttribute("name");
+        WebElement decsription_element = waitForDescriptionElement();
+        if (Platform.getInstance().isAndroid()) {
+            return decsription_element.getAttribute("text");
+        } else {
+            return decsription_element.getAttribute("name");
+        }
     }
 
     public void swipeToFooter()

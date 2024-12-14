@@ -43,7 +43,9 @@ public class ArticleTests extends CoreTestCase
         String search_line = "Appium";
         String article_title = "Appium";
 
-        SearchPageObject.clickSkipButton();
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
         SearchPageObject.clickByArticleWithSubstring(article_title);
@@ -59,7 +61,9 @@ public class ArticleTests extends CoreTestCase
         String search_line = "Appium";
         String article_title = "Appium";
 
-        SearchPageObject.clickSkipButton();
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
         SearchPageObject.clickByArticleWithSubstring(article_title);

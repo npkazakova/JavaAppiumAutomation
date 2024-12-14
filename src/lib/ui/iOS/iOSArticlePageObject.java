@@ -18,8 +18,8 @@ public class iOSArticlePageObject extends ArticlePageObject {
         INPUT_NAME_OF_LIST = "xpath://*[@text='Name of this list']";
         OK_BUTTON = "xpath://*[@text='OK']";
         ARTICLES_LIST_TPL = "xpath://*[contains(@name, '{SUBSTRING}')]";
-        ARTICLES_NEW_LIST_TPL = "xpath://*[@resource-id='org.wikipedia:id/page_list_item_title'][contains(@text,'{SUBSTRING}')]";
-        ARTICLE_DESCRIPTION_TPL = "xpath://*[@resource-id='pcs-edit-section-title-description'][contains(@text,'{SUBSTRING}')]";
+        ARTICLES_NEW_LIST_TPL = "xpath://*[contains(@name,'{SUBSTRING}')]";
+        ARTICLE_DESCRIPTION_TPL = "xpath://*[contains(@name,'{SUBSTRING}')]";
     }
 
     public iOSArticlePageObject(AppiumDriver driver)
