@@ -144,7 +144,6 @@ public class SearchTests extends CoreTestCase
                 {"Java version history", "List of versions of the Java programming language"}
         };
 
-//        SearchPageObject.clickSkipButton();
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();
         }
