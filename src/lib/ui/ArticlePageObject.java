@@ -76,7 +76,7 @@ public abstract class ArticlePageObject extends MainPageObject
                     "Cannot find the end of the article",
                     40);
         } else {
-            this.swipeUpTillElementAppear(FOOTER_ELEMENT,
+            this.scrollUpTillElementAppear(FOOTER_ELEMENT,
                     "Cannot find the end of the article",
                     40);
         }

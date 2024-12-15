@@ -271,7 +271,7 @@ public class MainPageObject {
         }
     }
 
-    public void scroll(int timeOfScroll)
+    public void scroll(int timeOfSwipe)
     {
         Dimension size = driver.manage().window().getSize();
         int startY = (int) (size.height * 0.70);
@@ -288,7 +288,7 @@ public class MainPageObject {
                 .addAction(finger.createPointerDown(0))
 
                 //Палец двигается к конечной точке
-                .addAction(finger.createPointerMove(Duration.ofMillis(timeOfScroll),
+                .addAction(finger.createPointerMove(Duration.ofMillis(timeOfSwipe),
                         PointerInput.Origin.viewport(), centerX, endY))
 
                 //Убираем палец с экрана
@@ -297,6 +297,31 @@ public class MainPageObject {
         //Выполняем действия
         driver.perform(Arrays.asList(swipe));
     }
+
+    public void scrollUpTillElementAppear(String locator, String error_message, int max_swipes)
+    {
+        int already_swiped = 0;
+        while (!this.isElementLocatedOnTheScreen(locator)){
+            if(already_swiped > max_swipes){
+                assertTrue(error_message, this.isElementLocatedOnTheScreen(locator));
+            }
+            scroll(200);
+            ++already_swiped;
+        }
+    }
+
+//    public void scrollUpTillElementAppear(String locator, String error_message, int max_swipes, int timeOfSwipe) {
+//        int already_swiped = 0;
+//        while (!this.isElementLocatedOnTheScreen(locator)) {
+//            if (already_swiped >= max_swipes) {
+//                assertTrue(error_message, this.isElementLocatedOnTheScreen(locator));
+//            }
+//            scroll(timeOfSwipe); // Используем ваш метод с минимальным временем свайпа
+//            already_swiped++;
+//        }
+//    }
+
+
 
     private By getLocatorByString(String locator_with_type) {
         String[] locatorParts = locator_with_type.split(":", 2);
