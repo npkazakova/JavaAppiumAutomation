@@ -310,19 +310,6 @@ public class MainPageObject {
         }
     }
 
-//    public void scrollUpTillElementAppear(String locator, String error_message, int max_swipes, int timeOfSwipe) {
-//        int already_swiped = 0;
-//        while (!this.isElementLocatedOnTheScreen(locator)) {
-//            if (already_swiped >= max_swipes) {
-//                assertTrue(error_message, this.isElementLocatedOnTheScreen(locator));
-//            }
-//            scroll(timeOfSwipe); // Используем ваш метод с минимальным временем свайпа
-//            already_swiped++;
-//        }
-//    }
-
-
-
     private By getLocatorByString(String locator_with_type) {
         String[] locatorParts = locator_with_type.split(":", 2);
         String by_type = locatorParts[0];
