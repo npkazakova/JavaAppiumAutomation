@@ -6,7 +6,7 @@ import lib.ui.ArticlePageObject;
 public class iOSArticlePageObject extends ArticlePageObject {
 
     static {
-        DESCRIPTION = "xpath://XCUIElementTypeStaticText[@name='Object-oriented programming language']";
+        DESCRIPTION = "id:Object-oriented programming language";
         FOOTER_ELEMENT = "xpath://XCUIElementTypeStaticText[@name='View article in browser']";
         SAVE_BUTTON = "id:Save for later";
         //CLOSE_ARTICLE_BUTTON = "id:Back";
