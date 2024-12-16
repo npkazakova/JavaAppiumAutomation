@@ -305,7 +305,7 @@ public class MainPageObject {
             if(already_swiped > max_swipes){
                 assertTrue(error_message, this.isElementLocatedOnTheScreen(locator));
             }
-            scroll(200);
+            scroll(25);
             ++already_swiped;
         }
     }
