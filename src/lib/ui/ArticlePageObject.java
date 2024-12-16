@@ -15,6 +15,7 @@ public abstract class ArticlePageObject extends MainPageObject
             OPTIONS_CREATE_NEW_LIST,
             OPTIONS_INPUT_READING_LIST_TITLE,
             OPTIONS_CREATE_READING_LIST_BUTTON,
+            OPTIONS_MY_LISTS_LINK,
             NAVIGATE_UP_BUTTON,
             SAVED_BUTTON,
             SAVED_ARTICLE,
@@ -103,7 +104,7 @@ public abstract class ArticlePageObject extends MainPageObject
     }
 
 
-    public void AddArticleSaveToDefaultList()
+    public void addArticleSaveToDefaultList()
     {
         this.waitForElementAndClick(SAVE_BUTTON,"Cannot find and click button to save article",5);
         this.waitForElementAndClick(NAVIGATE_UP_BUTTON,"Cannot press button to go back to list of articles",5);
@@ -112,7 +113,7 @@ public abstract class ArticlePageObject extends MainPageObject
         this.waitForElementNotPresent(SAVED_ARTICLE,"Cannot delete saved article",5);
     }
 
-    public void AddArticleSaveToNewList(String list_name)
+    public void addArticleSaveToNewList(String list_name)
     {
         this.waitForElementAndClick(SAVE_BUTTON,"Cannot find and click button to save article",5);
         this.waitForElementAndClick(ADD_TO_LIST_BUTTON,"Cannot find 'Add to list' button for the article",5);
@@ -122,7 +123,7 @@ public abstract class ArticlePageObject extends MainPageObject
         this.waitForElementAndClick(NAVIGATE_UP_BUTTON,"Cannot press button to go back to list of articles",5);
     }
 
-    public void AddArticleToMyList(String list_name)
+    public void addArticleToMyList(String list_name)
     {
         this.waitForElementAndClick(SAVE_BUTTON,"Cannot find and click button to save article",5);
         this.waitForElementAndClick(ADD_TO_LIST_BUTTON,"Cannot find 'Add to list' button for the article",5);
@@ -131,15 +132,22 @@ public abstract class ArticlePageObject extends MainPageObject
         this.waitForElementPresent(getArticlesList(list_name),"Cannot find list with name " + list_name,5);
     }
 
-    public void addArticleToMySaved(String list_name)
+    public void addArticleToDefaultSaved()
     {
         this.waitForElementAndClick(OPTIONS_ADD_TO_MY_LIST_BUTTON,"Cannot find option to add article to reading list",5);
-        this.waitForElementAndClick(OPTIONS_ADD_TO_MY_LIST,"Cannot find option to add article to reading list",5);
-        this.waitForElementAndClick(OPTIONS_CREATE_NEW_LIST,"Cannot find option to create new reading list",5);
-        this.waitForElementAndClick(OPTIONS_INPUT_READING_LIST_TITLE,"Cannot find input to set name of articles list",5);
-        this.typeArticlesListName(list_name);
-        this.waitForElementAndClick(OPTIONS_CREATE_READING_LIST_BUTTON,"Cannot press 'Create reading list' button",5);
-        this.assertElementPresent(getArticleAddedToList(list_name),"Cannot find list with name " + list_name);
+        this.waitForElementPresent(OPTIONS_MY_LISTS_LINK,"Cannot find navigation button to 'My lists'",5);
+//        this.waitForElementAndClick(OPTIONS_ADD_TO_MY_LIST,"Cannot find option to add article to reading list",5);
+//        this.waitForElementAndClick(OPTIONS_CREATE_NEW_LIST,"Cannot find option to create new reading list",5);
+//        this.waitForElementAndClick(OPTIONS_INPUT_READING_LIST_TITLE,"Cannot find input to set name of articles list",5);
+//        this.typeArticlesListName(list_name);
+//        this.waitForElementAndClick(OPTIONS_CREATE_READING_LIST_BUTTON,"Cannot press 'Create reading list' button",5);
+//        this.assertElementPresent(getArticleAddedToList(list_name),"Cannot find list with name " + list_name);
     }
+
+//    public void checkArticleSavedInDefaultList()
+//    {
+//        this.waitForElementPresent(SAVED_ARTICLE,"Cannot find saved article",5);
+//        this.waitForElementAndClick(NAVIGATE_BACK_BUTTON,"Cannot press button to go back to list of articles",5);
+//    }
 
 }

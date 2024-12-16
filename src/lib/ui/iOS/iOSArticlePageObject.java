@@ -14,6 +14,7 @@ public class iOSArticlePageObject extends ArticlePageObject {
         OPTIONS_CREATE_NEW_LIST = "xpath://XCUIElementTypeButton[@name='Create a new list']";
         OPTIONS_INPUT_READING_LIST_TITLE = "xpath://XCUIElementTypeTextField[@value='reading list title']";
         OPTIONS_CREATE_READING_LIST_BUTTON = "xpath://XCUIElementTypeButton[@name='Create reading list']";
+        OPTIONS_MY_LISTS_LINK = "id:Saved. Activate to unsave.";
         //CLOSE_ARTICLE_BUTTON = "id:Back";
         NAVIGATE_UP_BUTTON = "xpath://android.widget.ImageButton[@content-desc='Navigate up']";
         SAVED_BUTTON = "xpath://android.widget.FrameLayout[@content-desc='Saved']";

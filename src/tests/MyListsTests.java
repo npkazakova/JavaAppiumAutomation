@@ -4,6 +4,8 @@ import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.*;
 import lib.ui.factories.ArticlePageObjectFactory;
+import lib.ui.factories.MyListsPageObjectFactory;
+import lib.ui.factories.NavigationUIFactory;
 import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 
@@ -16,12 +18,11 @@ public class MyListsTests extends CoreTestCase {
 
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
-        NavigationUI NavigationUI = new NavigationUI(driver);
-        MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
+        NavigationUI NavigationUI = NavigationUIFactory.get(driver);
+        MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
 
         String search_line = "Java";
         String article_title = "Java (programming language)";
-        String list_name = "Programming languages";
 
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();
@@ -33,16 +34,15 @@ public class MyListsTests extends CoreTestCase {
         ArticlePageObject.waitForDescriptionElement();
 
         if(Platform.getInstance().isAndroid()) {
-            ArticlePageObject.AddArticleSaveToDefaultList();
+            ArticlePageObject.addArticleSaveToDefaultList();
             NavigationUI.clickDefaultList();
             MyListsPageObject.swipeByArticleToDelete(article_title);
         } else {
-            ArticlePageObject.addArticleToMySaved(list_name);
+            ArticlePageObject.addArticleToDefaultSaved();
+            NavigationUI.goToDefaultSavedArticlesFromArticle();
+            NavigationUI.closeSyncLogin();
+            MyListsPageObject.swipeByArticleToDelete(article_title);
         }
-
-//        ArticlePageObject.AddArticleSaveToDefaultList();
-//        NavigationUI.clickDefaultList();
-//        MyListsPageObject.swipeByArticleToDelete(article_title);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class MyListsTests extends CoreTestCase {
 
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
-        MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
+        MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
 
         String search_line = "Java";
         String first_article_title = "Java (programming language)";
@@ -64,11 +64,11 @@ public class MyListsTests extends CoreTestCase {
 
         SearchPageObject.clickByArticleWithSubstring(first_article_title);
         ArticlePageObject.waitForDescriptionElement();
-        ArticlePageObject.AddArticleSaveToNewList(list_name);
+        ArticlePageObject.addArticleSaveToNewList(list_name);
 
         SearchPageObject.clickByArticleWithSubstring(second_article_title);
         ArticlePageObject.waitForDescriptionElement();
-        ArticlePageObject.AddArticleToMyList(list_name);
+        ArticlePageObject.addArticleToMyList(list_name);
 
         SearchPageObject.getSearchElementInListByTitle(first_article_title);
         SearchPageObject.getSearchElementInListByTitle(second_article_title);
