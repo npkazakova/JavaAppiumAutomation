@@ -10,6 +10,11 @@ public abstract class ArticlePageObject extends MainPageObject
             DESCRIPTION,
             FOOTER_ELEMENT,
             SAVE_BUTTON,
+            OPTIONS_ADD_TO_MY_LIST_BUTTON,
+            OPTIONS_ADD_TO_MY_LIST,
+            OPTIONS_CREATE_NEW_LIST,
+            OPTIONS_INPUT_READING_LIST_TITLE,
+            OPTIONS_CREATE_READING_LIST_BUTTON,
             NAVIGATE_UP_BUTTON,
             SAVED_BUTTON,
             SAVED_ARTICLE,
@@ -19,7 +24,8 @@ public abstract class ArticlePageObject extends MainPageObject
             OK_BUTTON,
             ARTICLES_LIST_TPL,
             ARTICLE_DESCRIPTION_TPL,
-            ARTICLES_NEW_LIST_TPL;
+            ARTICLES_NEW_LIST_TPL,
+            OPTIONS_ARTICLE_ADDED_TO_LIST_TPL;
 
     /* TEMPLATES METHODS */
     private static String getArticlesNewList(String substring)
@@ -35,6 +41,11 @@ public abstract class ArticlePageObject extends MainPageObject
     private static String getArticleDescription(String substring)
     {
         return ARTICLE_DESCRIPTION_TPL.replace("{SUBSTRING}", substring);
+    }
+
+    private static String getArticleAddedToList(String substring)
+    {
+        return OPTIONS_ARTICLE_ADDED_TO_LIST_TPL.replace("{SUBSTRING}", substring);
     }
     /* TEMPLATES METHODS */
 
@@ -82,9 +93,13 @@ public abstract class ArticlePageObject extends MainPageObject
         }
     }
 
-    public void typeArticlesListName(String listName)
+    public void typeArticlesListName(String list_name)
     {
-        this.waitForElementAndSendKeys(INPUT_NAME_OF_LIST, listName, "Cannot find input to set name of articles list", 5);
+        if(Platform.getInstance().isAndroid()){
+            this.waitForElementAndSendKeys(INPUT_NAME_OF_LIST, list_name, "Cannot find input to set name of articles list", 5);
+        } else {
+            this.waitForElementAndSendKeys(OPTIONS_INPUT_READING_LIST_TITLE, list_name, "Cannot find input to clear name of articles list", 5);
+        }
     }
 
 
@@ -97,23 +112,34 @@ public abstract class ArticlePageObject extends MainPageObject
         this.waitForElementNotPresent(SAVED_ARTICLE,"Cannot delete saved article",5);
     }
 
-    public void AddArticleSaveToNewList(String listName)
+    public void AddArticleSaveToNewList(String list_name)
     {
         this.waitForElementAndClick(SAVE_BUTTON,"Cannot find and click button to save article",5);
         this.waitForElementAndClick(ADD_TO_LIST_BUTTON,"Cannot find 'Add to list' button for the article",5);
         this.waitForElementPresent(INPUT_NAME_OF_LIST,"Cannot find input to set name of articles list",5);
-        this.typeArticlesListName(listName);
+        this.typeArticlesListName(list_name);
         this.waitForElementAndClick(OK_BUTTON,"Cannot press 'OK' button",5);
         this.waitForElementAndClick(NAVIGATE_UP_BUTTON,"Cannot press button to go back to list of articles",5);
     }
 
-    public void AddArticleToMyList(String listName)
+    public void AddArticleToMyList(String list_name)
     {
         this.waitForElementAndClick(SAVE_BUTTON,"Cannot find and click button to save article",5);
         this.waitForElementAndClick(ADD_TO_LIST_BUTTON,"Cannot find 'Add to list' button for the article",5);
-        this.waitForElementAndClick(getArticlesList(listName),"Cannot find list with name " + listName,5);
+        this.waitForElementAndClick(getArticlesList(list_name),"Cannot find list with name " + list_name,5);
         this.waitForElementAndClick(VIEW_LIST_BUTTON,"Cannot press 'View list' button",5);
-        this.waitForElementPresent(getArticlesList(listName),"Cannot find list with name " + listName,5);
+        this.waitForElementPresent(getArticlesList(list_name),"Cannot find list with name " + list_name,5);
+    }
+
+    public void addArticleToMySaved(String list_name)
+    {
+        this.waitForElementAndClick(OPTIONS_ADD_TO_MY_LIST_BUTTON,"Cannot find option to add article to reading list",5);
+        this.waitForElementAndClick(OPTIONS_ADD_TO_MY_LIST,"Cannot find option to add article to reading list",5);
+        this.waitForElementAndClick(OPTIONS_CREATE_NEW_LIST,"Cannot find option to create new reading list",5);
+        this.waitForElementAndClick(OPTIONS_INPUT_READING_LIST_TITLE,"Cannot find input to set name of articles list",5);
+        this.typeArticlesListName(list_name);
+        this.waitForElementAndClick(OPTIONS_CREATE_READING_LIST_BUTTON,"Cannot press 'Create reading list' button",5);
+        this.assertElementPresent(getArticleAddedToList(list_name),"Cannot find list with name " + list_name);
     }
 
 }

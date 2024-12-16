@@ -1,12 +1,15 @@
 package tests;
 
 import lib.CoreTestCase;
+import lib.Platform;
 import lib.ui.*;
 import lib.ui.factories.ArticlePageObjectFactory;
 import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 
 public class MyListsTests extends CoreTestCase {
+
+    private static final String name_of_folder = "Learning programming";
 
     @Test
     public void testSaveFirstArticleToMyList () {
@@ -18,17 +21,28 @@ public class MyListsTests extends CoreTestCase {
 
         String search_line = "Java";
         String article_title = "Java (programming language)";
+        String list_name = "Programming languages";
 
-        SearchPageObject.clickSkipButton();
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
 
         SearchPageObject.clickByArticleWithSubstring(article_title);
         ArticlePageObject.waitForDescriptionElement();
 
-        ArticlePageObject.AddArticleSaveToDefaultList();
-        NavigationUI.clickDefaultList();
-        MyListsPageObject.swipeByArticleToDelete(article_title);
+        if(Platform.getInstance().isAndroid()) {
+            ArticlePageObject.AddArticleSaveToDefaultList();
+            NavigationUI.clickDefaultList();
+            MyListsPageObject.swipeByArticleToDelete(article_title);
+        } else {
+            ArticlePageObject.addArticleToMySaved(list_name);
+        }
+
+//        ArticlePageObject.AddArticleSaveToDefaultList();
+//        NavigationUI.clickDefaultList();
+//        MyListsPageObject.swipeByArticleToDelete(article_title);
     }
 
     @Test
