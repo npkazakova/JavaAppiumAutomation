@@ -6,8 +6,8 @@ import lib.ui.ArticlePageObject;
 public class AndroidArticlePageObject extends ArticlePageObject {
 
     static {
-        DESCRIPTION = "id:pcs-edit-section-title-description";
-        ARTICLE_DESCRIPTION_TPL = "xpath://*[@resource-id='pcs-edit-section-title-description'][contains(@text,'{SUBSTRING}')]";
+        ANDROID_ARTICLE_DESCRIPTION = "id:pcs-edit-section-title-description";
+        ANDROID_ARTICLE_DESCRIPTION_TPL = "xpath://*[@resource-id='pcs-edit-section-title-description'][contains(@text,'{SUBSTRING}')]";
         FOOTER_ELEMENT = "xpath://*[@text='View article in browser']";
         SAVE_BUTTON = "xpath://*[contains(@text, 'Save')]";
         NAVIGATE_UP_BUTTON = "xpath://android.widget.ImageButton[@content-desc='Navigate up']";

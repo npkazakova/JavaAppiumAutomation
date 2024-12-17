@@ -38,7 +38,7 @@ public class MyListsTests extends CoreTestCase {
             NavigationUI.clickDefaultList();
             MyListsPageObject.swipeByArticleToDelete(article_title);
         } else {
-            ArticlePageObject.addArticleToDefaultSaved();
+            ArticlePageObject.addArticleSaveToDefaultList();
             NavigationUI.goToDefaultSavedArticlesFromArticle();
             NavigationUI.closeSyncLogin();
             MyListsPageObject.swipeByArticleToDelete(article_title);
@@ -58,7 +58,9 @@ public class MyListsTests extends CoreTestCase {
         String second_article_description = "High-level programming language";
         String list_name = "Programming languages";
 
-        SearchPageObject.clickSkipButton();
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
 
@@ -67,7 +69,7 @@ public class MyListsTests extends CoreTestCase {
         ArticlePageObject.addArticleSaveToNewList(list_name);
 
         SearchPageObject.clickByArticleWithSubstring(second_article_title);
-        ArticlePageObject.waitForDescriptionElement();
+        ArticlePageObject.waitForTitleElement();
         ArticlePageObject.addArticleToMyList(list_name);
 
         SearchPageObject.getSearchElementInListByTitle(first_article_title);
