@@ -38,4 +38,14 @@ abstract public class NavigationUI extends MainPageObject
     {
         this.waitForElementAndClick(NAVIGATE_BACK_BUTTON, "Cannot find and click navigate back button", 5);
     }
+
+    public void clickCancelButton()
+    {
+        this.waitForElementAndClick(NAVIGATE_CANCEL_BUTTON, "Cannot find and click navigate cancel button", 5);
+    }
+
+    public void clickSavedButton()
+    {
+        this.waitForElementAndClick(NAVIGATE_SAVED_BUTTON, "Cannot find and click navigate saved button", 5);
+    }
 }

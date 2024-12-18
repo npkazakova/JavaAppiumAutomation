@@ -18,7 +18,7 @@ abstract public class SearchPageObject extends MainPageObject
             SEARCH_NO_RESULTS,
             SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION_TPL,
             SEARCH_RESULTS_BY_SUBSTRING_TPL,
-            SEARCH_RESULTS_IN_LIST_BY_TITLE_BY_SUBSTRING_TPL,
+            SEARCH_RESULTS_IN_LIST_BY_TITLE_TPL,
             SEARCH_KEYWORD_BY_SUBSTRING_TPL;
 
     public SearchPageObject(AppiumDriver driver)
@@ -39,7 +39,7 @@ abstract public class SearchPageObject extends MainPageObject
 
     private static String getResultsSearchElementInListByTitle(String title)
     {
-        return SEARCH_RESULTS_IN_LIST_BY_TITLE_BY_SUBSTRING_TPL.replace("{TITLE}", title);
+        return SEARCH_RESULTS_IN_LIST_BY_TITLE_TPL.replace("{TITLE}", title);
     }
 
     private static String getResultsSearchElementByTitleAndDescription(String title, String description)

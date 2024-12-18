@@ -75,7 +75,12 @@ public class MyListsTests extends CoreTestCase {
         ArticlePageObject.waitForTitleElement();
         ArticlePageObject.addArticleToMyList(list_name);
 
-        NavigationUI.clickBackButton();
+        if(Platform.getInstance().isIOS()) {
+            NavigationUI.clickBackButton();
+            NavigationUI.clickCancelButton();
+            NavigationUI.clickSavedButton();
+            NavigationUI.closeSyncLogin();
+        }
 
         SearchPageObject.getSearchElementInListByTitle(first_article_title);
         SearchPageObject.getSearchElementInListByTitle(second_article_title);

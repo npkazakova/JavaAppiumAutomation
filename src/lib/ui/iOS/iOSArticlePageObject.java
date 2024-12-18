@@ -28,7 +28,7 @@ public class iOSArticlePageObject extends ArticlePageObject {
         ARTICLES_NEW_LIST_TPL = "xpath://XCUIElementTypeStaticText[contains(@name,'{SUBSTRING}')]";
         ANDROID_ARTICLE_DESCRIPTION_TPL = "xpath://*[contains(@name,'{SUBSTRING}')]";
         IOS_QUESTION_ADD_TO_LIST_TPL = "xpath://XCUIElementTypeStaticText[contains(@name,'to a reading list?')]";
-        IOS_ARTICLE_ADDED_TO_READING_LIST_TPL = "xpath://XCUIElementTypeStaticText[@name='Article added to '{SUBSTRING}'']]";
+        IOS_ARTICLE_ADDED_TO_READING_LIST = "xpath://XCUIElementTypeStaticText[contains@name,'Article added']";
         IOS_ARTICLES_LIST_NAME_TPL = "xpath://XCUIElementTypeStaticText[@name='{SUBSTRING}']";
     }
 

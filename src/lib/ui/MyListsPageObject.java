@@ -55,7 +55,7 @@ abstract public class MyListsPageObject extends MainPageObject{
         }
     }
 
-    public void waitForArticleToDisappearByTitle(String article_title)
+    private void waitForArticleToDisappearByTitle(String article_title)
     {
         if(Platform.getInstance().isAndroid()) {
             String article_xpath = getFolderXpathByName(article_title);

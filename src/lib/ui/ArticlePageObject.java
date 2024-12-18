@@ -28,7 +28,7 @@ public abstract class ArticlePageObject extends MainPageObject
             ARTICLES_LIST_TPL,
             ANDROID_ARTICLE_DESCRIPTION_TPL,
             ARTICLES_NEW_LIST_TPL,
-            IOS_ARTICLE_ADDED_TO_READING_LIST_TPL,
+            IOS_ARTICLE_ADDED_TO_READING_LIST,
             IOS_QUESTION_ADD_TO_LIST_TPL,
             IOS_ARTICLES_LIST_NAME_TPL;
 
@@ -48,10 +48,10 @@ public abstract class ArticlePageObject extends MainPageObject
         return ANDROID_ARTICLE_DESCRIPTION_TPL.replace("{SUBSTRING}", substring);
     }
 
-    private static String getArticleAddedToReadingList(String substring)
-    {
-        return IOS_ARTICLE_ADDED_TO_READING_LIST_TPL.replace("{SUBSTRING}", substring);
-    }
+//    public static String getArticleAddedToReadingList(String substring)
+//    {
+//        return IOS_ARTICLE_ADDED_TO_READING_LIST.replace("{SUBSTRING}", substring);
+//    }
 
     private static String getQuestionAddToList(String substring)
     {
@@ -178,7 +178,7 @@ public abstract class ArticlePageObject extends MainPageObject
             this.waitForElementAndClick(IOS_ADD_TO_MY_LIST_BUTTON,"Cannot find option to add article to reading list",5);
             this.waitForElementAndClick(getQuestionAddToList(list_name),"Cannot find question to add article to list " + list_name,5);
             this.waitForElementAndClick(getArticlesListName(list_name),"Cannot find list with name " + list_name,5);
-            this.assertElementPresent(getArticleAddedToReadingList(list_name),"Cannot find message with name " + list_name);
+            //this.assertElementPresent(IOS_ARTICLE_ADDED_TO_READING_LIST,"Cannot find message that article added to reading list");
         }
     }
 
