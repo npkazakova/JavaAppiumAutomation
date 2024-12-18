@@ -1,59 +1,86 @@
 package tests;
 
 import lib.CoreTestCase;
+import lib.Platform;
 import lib.ui.*;
+import lib.ui.factories.ArticlePageObjectFactory;
+import lib.ui.factories.MyListsPageObjectFactory;
+import lib.ui.factories.NavigationUIFactory;
 import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 
 public class MyListsTests extends CoreTestCase {
 
+    private static final String name_of_folder = "Learning programming";
+
     @Test
     public void testSaveFirstArticleToMyList () {
 
-        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-        NavigationUI NavigationUI = new NavigationUI(driver);
-        MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
+        ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
+        NavigationUI NavigationUI = NavigationUIFactory.get(driver);
+        MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
 
         String search_line = "Java";
         String article_title = "Java (programming language)";
 
-        SearchPageObject.clickSkipButton();
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
 
         SearchPageObject.clickByArticleWithSubstring(article_title);
         ArticlePageObject.waitForDescriptionElement();
 
-        ArticlePageObject.AddArticleSaveToDefaultList();
-        NavigationUI.clickDefaultList();
-        MyListsPageObject.swipeByArticleToDelete(article_title);
+        if(Platform.getInstance().isAndroid()) {
+            ArticlePageObject.addArticleSaveToDefaultList();
+            NavigationUI.clickDefaultList();
+            MyListsPageObject.swipeByArticleToDelete(article_title);
+        } else {
+            ArticlePageObject.addArticleSaveToDefaultList();
+            NavigationUI.goToDefaultSavedArticlesFromArticle();
+            NavigationUI.closeSyncLogin();
+            MyListsPageObject.swipeByArticleToDelete(article_title);
+        }
     }
 
     @Test
     public void testSaveTwoArticlesToMyList () {
 
-        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-        MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
+        ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
+        MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
+        NavigationUI NavigationUI = NavigationUIFactory.get(driver);
 
         String search_line = "Java";
         String first_article_title = "Java (programming language)";
+
         String second_article_title = "JavaScript";
         String second_article_description = "High-level programming language";
         String list_name = "Programming languages";
 
-        SearchPageObject.clickSkipButton();
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
 
         SearchPageObject.clickByArticleWithSubstring(first_article_title);
         ArticlePageObject.waitForDescriptionElement();
-        ArticlePageObject.AddArticleSaveToNewList(list_name);
+        ArticlePageObject.addArticleSaveToNewList(list_name);
+        NavigationUI.clickBackButton();
 
         SearchPageObject.clickByArticleWithSubstring(second_article_title);
-        ArticlePageObject.waitForDescriptionElement();
-        ArticlePageObject.AddArticleToMyList(list_name);
+        ArticlePageObject.waitForTitleElement();
+        ArticlePageObject.addArticleToMyList(list_name);
+
+        if(Platform.getInstance().isIOS()) {
+            NavigationUI.clickBackButton();
+            NavigationUI.clickCancelButton();
+            NavigationUI.clickSavedButton();
+            NavigationUI.closeSyncLogin();
+        }
 
         SearchPageObject.getSearchElementInListByTitle(first_article_title);
         SearchPageObject.getSearchElementInListByTitle(second_article_title);

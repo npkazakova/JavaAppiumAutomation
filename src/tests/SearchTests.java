@@ -1,6 +1,7 @@
 package tests;
 
 import lib.CoreTestCase;
+import lib.Platform;
 import lib.ui.SearchPageObject;
 import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
@@ -14,7 +15,9 @@ public class SearchTests extends CoreTestCase
         String search_line = "Java";
         String article_title = "Java (programming language)";
 
-        SearchPageObject.clickSkipButton();
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
         SearchPageObject.waitForSearchResult(article_title);
@@ -27,7 +30,9 @@ public class SearchTests extends CoreTestCase
 
         String search_line = "Java";
 
-        SearchPageObject.clickSkipButton();
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
 
@@ -42,7 +47,10 @@ public class SearchTests extends CoreTestCase
         String search_line = "Linkin Park discography";
 
         SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
-        SearchPageObject.clickSkipButton();
+
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
 
         SearchPageObject.typeSearchLine(search_line);
@@ -60,25 +68,31 @@ public class SearchTests extends CoreTestCase
         SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
 
         String search_line = "zgdjgdvvcs";
-
-        SearchPageObject.clickSkipButton();
-        SearchPageObject.initSearchInput();
-        SearchPageObject.typeSearchLine(search_line);
-
-        SearchPageObject.waitForEmptyResultsLabel();
-        SearchPageObject.assertThereIsNoResultOfSearch();
+        if (Platform.getInstance().isAndroid()) {
+            SearchPageObject.clickSkipButton();
+            SearchPageObject.initSearchInput();
+            SearchPageObject.typeSearchLine(search_line);
+            SearchPageObject.waitForEmptyResultsLabel();
+            SearchPageObject.assertThereIsNoResultOfSearch();
+        } else if (Platform.getInstance().isIOS()) {
+            SearchPageObject.initSearchInput();
+            SearchPageObject.typeSearchLine(search_line);
+            SearchPageObject.waitForNoResultsFoundLabel();
+        }
     }
 
     @Test
     public void testCompareTopicsInputPlaceholder() {
 
         SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
-        SearchPageObject.clickSkipButton();
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
 
-        String topic_placeholder_text = SearchPageObject.getSearchInputText();
+        String topic_placeholder_text = SearchPageObject.getSearchInputPlaceholder();
         assertEquals(
-                "We see unexpected text!",
+                "We see unexpected placeholder text!",
                 "Search Wikipedia",
                 topic_placeholder_text
         );
@@ -91,7 +105,9 @@ public class SearchTests extends CoreTestCase
 
         String search_line = "Thailand";
 
-        SearchPageObject.clickSkipButton();
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
 
@@ -108,7 +124,9 @@ public class SearchTests extends CoreTestCase
         String search_line = "Java";
         String keyword = "Java";
 
-        SearchPageObject.clickSkipButton();
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
         SearchPageObject.verifyResultsContainKeyword(keyword);
@@ -117,7 +135,7 @@ public class SearchTests extends CoreTestCase
     @Test
     public void testSearchResultsContainSpecificArticles() {
 
-        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
         String search_line = "Java";
         String[][] expectedResults = {
@@ -126,7 +144,9 @@ public class SearchTests extends CoreTestCase
                 {"Java version history", "List of versions of the Java programming language"}
         };
 
-        SearchPageObject.clickSkipButton();
+        if (!isPlatformIOS()) {
+            SearchPageObject.clickSkipButton();
+        }
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
         for(String[] result : expectedResults) {
