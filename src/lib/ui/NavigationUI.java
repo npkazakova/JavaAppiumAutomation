@@ -9,7 +9,7 @@ abstract public class NavigationUI extends MainPageObject
             NAVIGATE_BACK_BUTTON,
             NAVIGATE_CANCEL_BUTTON,
             NAVIGATE_SAVED_BUTTON,
-            OPTIONS_CLOSE_LOGIN_TO_SYNC_BUTTON;
+            IOS_CLOSE_LOGIN_TO_SYNC_BUTTON;
 
 
     public NavigationUI(AppiumDriver driver)
@@ -19,11 +19,7 @@ abstract public class NavigationUI extends MainPageObject
 
     public void clickDefaultList()
     {
-        this.waitForElementAndClick(
-                DEFAULT_LIST,
-                "Cannot press navigation button to 'Default list for your saved articles",
-                5
-        );
+        this.waitForElementAndClick(DEFAULT_LIST, "Cannot press navigation button to 'Default list for your saved articles", 5);
     }
 
     public void goToDefaultSavedArticlesFromArticle()
@@ -35,6 +31,11 @@ abstract public class NavigationUI extends MainPageObject
 
     public void closeSyncLogin()
     {
-        this.waitForElementAndClick(OPTIONS_CLOSE_LOGIN_TO_SYNC_BUTTON, "Cannot find and click close sync login button", 5);
+        this.waitForElementAndClick(IOS_CLOSE_LOGIN_TO_SYNC_BUTTON, "Cannot find and click close sync login button", 5);
+    }
+
+    public void clickBackButton()
+    {
+        this.waitForElementAndClick(NAVIGATE_BACK_BUTTON, "Cannot find and click navigate back button", 5);
     }
 }

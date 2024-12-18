@@ -51,9 +51,11 @@ public class MyListsTests extends CoreTestCase {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
         MyListsPageObject MyListsPageObject = MyListsPageObjectFactory.get(driver);
+        NavigationUI NavigationUI = NavigationUIFactory.get(driver);
 
         String search_line = "Java";
         String first_article_title = "Java (programming language)";
+
         String second_article_title = "JavaScript";
         String second_article_description = "High-level programming language";
         String list_name = "Programming languages";
@@ -67,10 +69,13 @@ public class MyListsTests extends CoreTestCase {
         SearchPageObject.clickByArticleWithSubstring(first_article_title);
         ArticlePageObject.waitForDescriptionElement();
         ArticlePageObject.addArticleSaveToNewList(list_name);
+        NavigationUI.clickBackButton();
 
         SearchPageObject.clickByArticleWithSubstring(second_article_title);
         ArticlePageObject.waitForTitleElement();
         ArticlePageObject.addArticleToMyList(list_name);
+
+        NavigationUI.clickBackButton();
 
         SearchPageObject.getSearchElementInListByTitle(first_article_title);
         SearchPageObject.getSearchElementInListByTitle(second_article_title);

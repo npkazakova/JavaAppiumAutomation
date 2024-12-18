@@ -9,7 +9,7 @@ public class iOSNavigationUI extends NavigationUI {
             NAVIGATE_BACK_BUTTON = "id:Back";
             NAVIGATE_CANCEL_BUTTON = "xpath://XCUIElementTypeStaticText[@name='Cancel']";
             NAVIGATE_SAVED_BUTTON = "id:tabbar-save";
-            OPTIONS_CLOSE_LOGIN_TO_SYNC_BUTTON = "id:Close";
+            IOS_CLOSE_LOGIN_TO_SYNC_BUTTON = "id:Close";
     }
     public iOSNavigationUI(AppiumDriver driver)
     {
