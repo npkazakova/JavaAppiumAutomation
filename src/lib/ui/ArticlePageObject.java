@@ -89,7 +89,11 @@ public abstract class ArticlePageObject extends MainPageObject
 
     public void assertArticleDescriptionPresent()
     {
-        this.assertElementPresent(ANDROID_ARTICLE_DESCRIPTION, "Description is not present on the article page");
+        if(Platform.getInstance().isAndroid()){
+            this.assertElementPresent(ANDROID_ARTICLE_DESCRIPTION, "Description is not present on the article page");
+        } else {
+            this.assertElementPresent(IOS_ARTICLE_DESCRIPTION, "Description is not present on the article page");
+        }
     }
 
     public void verifyArticleDescriptionPresent(String description)

@@ -59,12 +59,6 @@ abstract public class SearchPageObject extends MainPageObject
         this.waitForElementAndClick(SEARCH_INIT_ELEMENT, "Cannot find and click search init element", 5);
     }
 
-//    public String getSearchInputText()
-//    {
-//        this.waitForElementPresent(SEARCH_INPUT_PLACEHOLDER, "Cannot find search input field", 15);
-//        return this.waitForElementAndGetAttribute(SEARCH_INPUT_PLACEHOLDER, "text", "Cannot find placeholder", 5);
-//    }
-
     public String getSearchInputPlaceholder() {
         this.waitForElementPresent(SEARCH_INPUT_PLACEHOLDER, "Cannot find search input field", 15);
 
