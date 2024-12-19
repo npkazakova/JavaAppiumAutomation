@@ -52,14 +52,15 @@ public class Platform
     {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("deviceName", "AndroidTestDevice");
-        capabilities.setCapability("platformVersion", "8.1");
-        //capabilities.setCapability("platformVersion","8.0");
-        capabilities.setCapability("automationName", "Appium");
-        capabilities.setCapability("appPackage", "org.wikipedia");
-        capabilities.setCapability("appActivity", ".main.MainActivity");
-        capabilities.setCapability("app", "D:/Репозитории/JavaAppiumAutomation/apks/org.wikipedia.apk");
-        //сapabilities.setCapability("app","/Users/nataliakazakova/Desktop/JavaAppiumAutomation/apks/org.wikipedia.apk");
+        capabilities.setCapability("appium:deviceName", "and81");
+        //capabilities.setCapability("appium:deviceName", "and80");
+        capabilities.setCapability("appium:platformVersion", "8.1");
+        //capabilities.setCapability("appium:platformVersion","8.0");
+        capabilities.setCapability("appium:automationName", "UiAutomator2");
+        capabilities.setCapability("appium:appPackage", "org.wikipedia");
+        capabilities.setCapability("appium:appActivity", ".main.MainActivity");
+        capabilities.setCapability("appium:app","/Users/natalia/Desktop/org.wikipedia.apk");
+        //capabilities.setCapability("appium:app", "D:/Репозитории/JavaAppiumAutomation/apks/org.wikipedia.apk");
         return capabilities;
     }
 
