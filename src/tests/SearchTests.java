@@ -10,7 +10,7 @@ public class SearchTests extends CoreTestCase
 {
     @Test
     public void testSearch() {
-        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
         String search_line = "Java";
         String article_title = "Java (programming language)";
@@ -26,7 +26,7 @@ public class SearchTests extends CoreTestCase
     @Test
     public void testCancelSearch() {
 
-        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
         String search_line = "Java";
 
@@ -46,7 +46,7 @@ public class SearchTests extends CoreTestCase
 
         String search_line = "Linkin Park discography";
 
-        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();
@@ -65,7 +65,7 @@ public class SearchTests extends CoreTestCase
     @Test
     public void testAmountOfEmptySearch() {
 
-        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
         String search_line = "zgdjgdvvcs";
         if (Platform.getInstance().isAndroid()) {
@@ -84,7 +84,7 @@ public class SearchTests extends CoreTestCase
     @Test
     public void testCompareTopicsInputPlaceholder() {
 
-        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();
         }
@@ -101,7 +101,7 @@ public class SearchTests extends CoreTestCase
     @Test
     public void testFindMultipleArticles() {
 
-        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
         String search_line = "Thailand";
 
@@ -119,7 +119,7 @@ public class SearchTests extends CoreTestCase
     @Test
     public void testSearchResultsContainKeyword() {
 
-        SearchPageObject SearchPageObject = new SearchPageObjectFactory().get(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
         String search_line = "Java";
         String keyword = "Java";
