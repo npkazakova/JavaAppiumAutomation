@@ -6,7 +6,7 @@ import lib.ui.ArticlePageObject;
 public class AndroidArticlePageObject extends ArticlePageObject {
 
     static {
-        ANDROID_ARTICLE_DESCRIPTION = "id:pcs-edit-section-title-description";
+        ANDROID_ARTICLE_DESCRIPTION = "org.wikipedia:id/page_contents_container";
         ANDROID_ARTICLE_DESCRIPTION_TPL = "xpath://*[@resource-id='pcs-edit-section-title-description'][contains(@text,'{SUBSTRING}')]";
         FOOTER_ELEMENT = "xpath://*[@text='View article in browser']";
         SAVE_BUTTON = "xpath://*[contains(@text, 'Save')]";
