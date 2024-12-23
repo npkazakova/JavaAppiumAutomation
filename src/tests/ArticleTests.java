@@ -16,14 +16,14 @@ public class ArticleTests extends CoreTestCase
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
 
         String search_line = "Java";
-        String article_title = "Java (programming language)";
+        String article_description = "Java (programming language)";
 
         if (!isPlatformIOS()) {
             SearchPageObject.clickSkipButton();
         }
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
-        SearchPageObject.clickByArticleWithSubstring(article_title);
+        SearchPageObject.clickByArticleWithSubstring(article_description);
 
         String article_description = ArticlePageObject.getArticleDescription();
 
